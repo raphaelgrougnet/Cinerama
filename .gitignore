@@ -1,8 +1,6 @@
 .idea
 __pychache__
 /.env
-/static/css/styles.css
-/static/css/styles.css.map
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm
 
