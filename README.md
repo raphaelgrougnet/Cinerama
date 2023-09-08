@@ -1,6 +1,6 @@
 # Bienvenue sur Cinerama - Votre Destination de Critiques de Films
 
-![Logo de Cinerama](lien_vers_votre_logo.png)
+![Logo de Cinerama](https://github.com/raphaelgrougnet/Cinerama/blob/main/static/images/logo/LogoCineramaTextWhite.png)
 
 Bienvenue sur Cinerama, votre source ultime pour les critiques de films les plus complètes et impartiales. Notre plateforme est dédiée à fournir aux passionnés de cinéma des analyses approfondies, des évaluations équilibrées et des informations essentielles sur une variété de films, des classiques intemporels aux dernières sorties.
 
