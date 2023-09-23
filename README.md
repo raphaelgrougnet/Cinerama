@@ -1,6 +1,6 @@
 # Bienvenue sur Cinerama - Votre Destination de Critiques de Films
 
-![Logo de Cinerama](lien_vers_votre_logo.png)
+![Logo de Cinerama](https://github.com/raphaelgrougnet/Cinerama/blob/main/static/images/logo/LogoCineramaTextWhite.png)
 
 Bienvenue sur Cinerama, votre source ultime pour les critiques de films les plus complètes et impartiales. Notre plateforme est dédiée à fournir aux passionnés de cinéma des analyses approfondies, des évaluations équilibrées et des informations essentielles sur une variété de films, des classiques intemporels aux dernières sorties.
 
@@ -26,7 +26,7 @@ Bienvenue sur Cinerama, votre source ultime pour les critiques de films les plus
 
 ## Comment Contribuer
 
-Nous sommes toujours à la recherche de nouveaux contributeurs passionnés par le cinéma. Si vous aimez écrire des critiques de films approfondies et captivantes, rejoignez notre équipe. Contactez-nous à [contact@cinerama.com](mailto:contact@cinerama.com) pour en savoir plus sur les opportunités de contribution.
+Nous sommes toujours à la recherche de nouveaux contributeurs passionnés par le cinéma. Si vous aimez écrire des critiques de films approfondies et captivantes, rejoignez notre équipe. REndez-vous sur le site pour en savoir plus sur les opportunités de contribution.
 
 ## Restons Connectés
 
