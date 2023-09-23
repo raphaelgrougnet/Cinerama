@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block accueil_active %}active{% endblock %}
+{% block content %}
+
+    <section class="pt-4">
+        <div class="searchbar-bundle">
+            <button class="btn text-center me-lg-3 d-flex align-items-center justify-content-center text-white"><i class="bi bi-filter pe-1"></i>Trier</button>
+            <input type="text" class="form-control" placeholder="Rechercher un film...">
+            <button type="submit" class="btn ms-lg-3 d-flex align-items-center justify-content-center text-white"><i class="bi bi-arrow-return-right pe-1"></i>Rechercher</button>
+        </div>
+    </section>
+    <section class="pt-5">
+        <h4>Récentes sorties en salle</h4>
+        <div class="scroller mb-80px">
+            <div class=" card-film">
+                <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
+                <p class="card-film-title m-0">Black Panther</p>
+            </div>
+            <div class=" card-film">
+                <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
+            </div>
+            <div class=" card-film">
+                <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
+                
+            </div>
+            <div class=" card-film">
+                <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
+            </div>
+            <div class=" card-film">
+                <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
+            </div>
+            <div class=" card-film">
+                <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
+            </div>
+            <div class=" card-film">
+                <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
+            </div>
+            <div class=" card-film">
+                <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
+            </div>
+
+        </div>
+
+        <h4>Les mieux notées</h4>
+        <div class="scroller">
+            <div class=" card-film">
+                <img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img">
+            </div>
+            <div class=" card-film">
+                <img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img">
+            </div>
+            <div class=" card-film">
+                <img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img">
+            </div>
+            <div class=" card-film">
+                <img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img">
+            </div>
+            <div class=" card-film">
+                <img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img">
+            </div>
+            <div class=" card-film">
+                <img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img">
+            </div>
+            <div class=" card-film">
+                <img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img">
+            </div>
+            <div class=" card-film">
+                <img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img">
+            </div>
+
+        </div>
+    </section>
+
+
+
+{% endblock %}

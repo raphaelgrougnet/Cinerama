@@ -18,4 +18,4 @@ app.secret_key = os.getenv('SECRET_KEY')
 @app.route('/')
 def index():
     print("Hello world")
-    return render_template('base.jinja')
+    return render_template('index.html', accueil_active=True)
