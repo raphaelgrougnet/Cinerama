@@ -36,9 +36,13 @@
 
     button{
         background-color: rgb(0, 0, 0);
-        transition: 0.8s;
+        transition: background-color 0.8s;
 
         &:hover{
+            background-color: rgb(0, 0, 0, 0.8);
+        }
+
+        &:active{
             background-color: rgb(0, 0, 0, 0.8);
         }
     }
@@ -46,6 +50,29 @@
     i{
         font-size: 1.5rem;
     }
+}
+
+.sort-dropdown{
+    position: relative;
+    display: inline-block;
+    &:hover{
+        .sort-content{
+            display: block;
+        }
+    }
+}
+
+
+
+.sort-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+    width: 100%;
 }
 
 
@@ -135,6 +162,10 @@
         button{
             width: 100%;
         }
+    }
+
+    .sort-dropdown{
+        width: 100%;
     }
 }
 
