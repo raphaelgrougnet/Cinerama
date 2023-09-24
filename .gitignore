@@ -1,5 +1,5 @@
 .idea
-__pychache__/
+__pycache__
 .pyc
 /.env
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm
