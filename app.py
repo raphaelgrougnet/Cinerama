@@ -4,7 +4,6 @@ Démonstration des paramètres obligatoires
 import os
 
 import dotenv
-import bd
 from flask import Flask, render_template, session, request, redirect, url_for
 
 if not os.getenv('BD_UTILISATEUR'):
