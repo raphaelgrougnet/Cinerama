@@ -4,15 +4,20 @@
     <form class="form-signin pt-4" method="POST" novalidate>
         <h2 class="form-signin-heading text-center">Connexion</h2>
         <label for="username" class="sr-only">Nom d'utilisateur</label>
-        <input type="text" id="username" name="username" class="form-control my-2" placeholder="Nom d'utilisateur"  autofocus>
+        <input type="text" id="username" name="username" class="form-control my-2 {{ classe_erreur_username }}" placeholder="Nom d'utilisateur" value="{{value_username}}"  autofocus>
         <div class="invalid-feedback">
             Veuillez entrer votre nom d'utilisateur.
         </div>
         <label for="password" class="sr-only">Mot de passe</label>
-        <input type="password" id="password" name="password" class="form-control my-2" placeholder="Mot de passe" >
+        <input type="password" id="password" name="password" class="form-control my-2 {{ classe_erreur_password }}" placeholder="Mot de passe" >
         <div class="invalid-feedback">
             Veuillez entrer votre mot de passe.
         </div>
+
+        <div class="alert alert-danger {{ class_erreur_login }}" role="alert">
+            Identifiant ou mot de passe incorrect.
+        </div>
+
         <button class="btn btn-primary w-100 my-2" type="submit">Se connecter</button>
     </form>
     <p class="mt-3 text-center">
