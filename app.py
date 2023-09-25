@@ -30,6 +30,15 @@ def login():
             return redirect(url_for('index'))
     return render_template('login.html')
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        user = request.form.get('user')
+        if user:
+            session['user'] = user
+            return redirect(url_for('index'))
+    return render_template('register.html')
+
 @app.route('/logout')
 def logout():
     session.clear()
