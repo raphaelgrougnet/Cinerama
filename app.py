@@ -5,7 +5,7 @@ import os
 
 import dotenv
 import bd
-from flask import Flask, render_template, session, request
+from flask import Flask, render_template, session, request, redirect, url_for
 
 if not os.getenv('BD_UTILISATEUR'):
     dotenv.load_dotenv(".env")
@@ -17,5 +17,20 @@ app.secret_key = os.getenv('SECRET_KEY')
 
 @app.route('/')
 def index():
-    print("Hello world")
-    return render_template('index.html', accueil_active=True)
+    user = session.get('user')
+    return render_template('index.html', user = user)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        user = request.form.get('user')
+        if user:
+            session['user'] = user
+            return redirect(url_for('index'))
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))

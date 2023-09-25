@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <form class="form-signin pt-4" method="POST">
+        <h2 class="form-signin-heading text-center">Connexion</h2>
+        <label for="username" class="sr-only">Nom d'utilisateur</label>
+        <input type="text" id="username" name="username" class="form-control my-2" placeholder="Nom d'utilisateur" required autofocus>
+        <label for="password" class="sr-only">Mot de passe</label>
+        <input type="password" id="password" name="password" class="form-control my-2" placeholder="Mot de passe" required>
+        <div class="alert alert-danger">
+            test
+        </div>
+        <button class="btn btn-primary w-100 my-2" type="submit">Se connecter</button>
+    </form>
+
+{% endblock %}
