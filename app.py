@@ -5,12 +5,15 @@ import os
 
 import dotenv
 import bd
+from profil import bp_profil
 from flask import Flask, render_template, session, request
 
 if not os.getenv('BD_UTILISATEUR'):
     dotenv.load_dotenv(".env")
 
 app = Flask(__name__)
+
+app.register_blueprint(bp_profil, url_prefix='/profil')
 
 app.secret_key = os.getenv('SECRET_KEY')
 
