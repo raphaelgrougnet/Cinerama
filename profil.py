@@ -13,7 +13,6 @@ utilisateur = {
     "is_admin": False,
     "is_premium": False,
     "karma": 535,
-
 }
 
 @bp_profil.route('/')
