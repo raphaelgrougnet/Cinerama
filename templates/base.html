@@ -49,10 +49,10 @@
                 <a class="nav-link {% block posts_active %}{% endblock %}" href="/posts">Posts</a>
               </li>
             </ul>
-            {% if user %}
+            {% if utilisateur %}
             <div class="profile-btn">
                 <a class="profile-btn" href="/profil">
-                    <img src="../static/images/profils/placeholder-profile.jpg" alt="Profile" class="profile-img">
+                    <img src="{{ utilisateur.pfp }}" alt="Profile" class="profile-img">
                 </a>
             </div>
             {% else %}
