@@ -2,8 +2,6 @@ import os
 import re
 import hashlib
 import dotenv
-
-import bd
 from profil import bp_profil
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_pymongo import PyMongo
@@ -41,6 +39,7 @@ def login():
         classe_erreur_password = ""
 
         username = request.form.get('username', default='')
+        username = username.lower()
         password = request.form.get('password', default='')
 
         if not username:
@@ -66,7 +65,6 @@ def login():
             "username": utilisateur_trouve["username"],
             "pfp" : utilisateur_trouve["pfp"]
         }
-        print(user["pfp"])
         if utilisateur_trouve:
             
             session.permanent = True
@@ -88,6 +86,7 @@ def register():
         first_name = request.form.get('first_name', default='')
         last_name = request.form.get('last_name', default='')
         username = request.form.get('username', default='')
+        username = username.lower()
         email = request.form.get('email', default='')
         password1 = request.form.get('password1', default='')
         password2 = request.form.get('password2', default='')
