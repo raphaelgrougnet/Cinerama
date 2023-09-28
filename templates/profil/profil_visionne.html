@@ -2,30 +2,30 @@
 
 {% block content %}
 <section class="mt-4">
-    {% if user.is_premium %}
-        <h1><i class="bi bi-star-fill premium-color"></i> {{user.username}}</h1>
+    {% if utilisateur.is_premium %}
+        <h1><i class="bi bi-star-fill premium-color"></i> {{utilisateur.username}}</h1>
     {% else %}
-        <h1>{{user.username}}</h1>
+        <h1>{{utilisateur.username}}</h1>
     {% endif %}
 </section>
 <section class="mt-3">
-    {% if user.is_admin %}
+    {% if utilisateur.is_admin %}
         <div class="info-user">
             <p class="text-info">Vous êtes admin</p>
             <a href="#" id="btn-personnalise" class="btn btn-primary">Personnaliser votre profil</a>
         </div>
         <div>
-            <p>Votre karma : {{user.karma}}</p>
+            <p>Votre karma : {{utilisateur.karma}}</p>
         </div>
     {% else %}
         <div class="info-user">
-            <p>Votre karma : {{user.karma}}</p>
+            <p>Votre karma : {{utilisateur.karma}}</p>
             <a href="#" id="btn-personnalise" class="btn btn-primary">Personnaliser votre profil</a>
         </div>
     {% endif %}
     <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="/profil/">Commentaires</a>
+          <a class="nav-link" href="/profil/">Commentaires</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/profil/favoris">Favoris</a>
