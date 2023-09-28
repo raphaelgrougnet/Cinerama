@@ -11097,6 +11097,9 @@ th {
 .card-film:hover .card-film-title {
   opacity: 0;
 }
+.card-film:hover .delete-button {
+  opacity: 1;
+}
 .card-film .card-img {
   width: 100%;
   transition: 0.5s;
@@ -11112,12 +11115,29 @@ th {
   transition: 0.5s;
 }
 
-.premium-color {
-  color: #ebaa1e;
+.profil-card-film .card-film {
+  width: auto !important;
+}
+.profil-card-film .delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #f00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: opacity 0.5s;
+  text-decoration: none;
+  opacity: 0;
+}
+.profil-card-film .delete-button:hover {
+  opacity: 0.8;
 }
 
-.sizing-card {
-  width: 75%;
+.premium-color {
+  color: #ebaa1e;
 }
 
 .info-user {
@@ -11125,33 +11145,46 @@ th {
   justify-content: space-between;
 }
 
+.mini-description {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-fav-vis {
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+}
+
 .comment-card {
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
   padding: 15px;
   max-width: 100%;
 }
 .comment-card__avatar {
-  height: 40px;
-  background-color: rgb(255, 208, 0);
+  height: 55px;
+  background-color: rgb(0, 0, 0);
   border-radius: 5px;
   background-size: cover;
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-right: 10px;
+  justify-content: start;
 }
 .comment-card__avatar__img {
   width: 40px;
   border-radius: 5px;
+  margin-left: 10px;
 }
 .comment-card__content {
   font-size: 16px;
   line-height: 1.5;
 }
 .comment-card__content__description {
-  margin-top: 5px;
+  margin-top: 10px;
   margin-bottom: 5px;
 }
 .comment-card__content__metadata {
@@ -11162,9 +11195,12 @@ th {
 .comment-card__content__metadata__film-title {
   font-weight: bold;
 }
-.comment-card__content__metadata__username {
+.comment-card__content__metadata__nom {
   font-weight: bold;
-  color: #333;
+  color: #ffffff;
+}
+.comment-card__content__metadata__username {
+  color: rgb(255, 208, 0);
 }
 .comment-card__content__metadata__comment-date {
   color: #999;
@@ -11234,5 +11270,8 @@ th {
   }
   .nav-tabs {
     flex-direction: column !important;
+  }
+  .mini-description {
+    flex-direction: column;
   }
 }/*# sourceMappingURL=styles.css.map */

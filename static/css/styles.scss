@@ -125,6 +125,9 @@
         .card-film-title{
             opacity: 0;
         }
+        .delete-button{
+            opacity: 1;
+        }
     }
 
     .card-img{
@@ -145,14 +148,33 @@
     }
 }
 
+.profil-card-film{
 
+    .card-film{
+        width: auto !important; 
+    }
+    .delete-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #f00;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: opacity 0.5s;
+        text-decoration: none;
+        opacity: 0;
+    
+        &:hover {
+          opacity: 0.8;
+        }
+    }
+}
 
 .premium-color{
     color: #ebaa1e;  
-}
-
-.sizing-card{
-    width: 75%;
 }
 
 .info-user{
@@ -160,53 +182,72 @@
     justify-content: space-between;
 }
 
+.mini-description{
+    display: flex;
+    justify-content: space-between;
+}
 
-// Comment card container
+
+.img-fav-vis{
+    height: 300px; 
+    object-fit: cover; 
+    object-position: top;
+}
+
+
+
+// Container du Commentaire
 .comment-card {
     background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
     max-width: 100%; 
   
     // Avatar du User
     &__avatar {
-        height: 40px;
-        background-color: rgb(255, 208, 0); 
+        height: 55px;       
+        background-color: rgb(0, 0, 0); 
         border-radius: 5px;
         background-size: cover;
         display: flex;
         align-items: center;
-        justify-content: center;
-        margin-right: 10px;
+        justify-content: start;
 
+        //Image de l'avatar
         &__img {
             width: 40px;
             border-radius: 5px;
+            margin-left: 10px;
         } 
     }
-  
+    //Le contenu du commentaire
     &__content {
         font-size: 16px;
         line-height: 1.5;
 
+        //La discription du film
         &__description {
-            margin-top: 5px;
+            margin-top: 10px;
             margin-bottom: 5px;
         }
-  
+        
+        //Les data du commentaire
         &__metadata {
             font-size: 14px;
             color: #666;
             margin-top: 8px;
-  
+
             &__film-title {
                 font-weight: bold;
             }
   
-            &__username {
+            &__nom {
                 font-weight: bold;
-                color: #333;
+                color: #ffffff;
+            }
+            &__username{
+                color: rgb(255, 208, 0);
             }
   
             &__comment-date {
@@ -216,9 +257,6 @@
     }
 }
   
-
-
-
 @media (max-width: 992px) {
     .logo-navbar{
         width: 20vw;
@@ -292,6 +330,10 @@
 
     .nav-tabs{
         flex-direction: column !important; 
+    }
+
+    .mini-description{
+        flex-direction: column;
     }
 }
 
