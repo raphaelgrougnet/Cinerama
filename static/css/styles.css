@@ -11095,7 +11095,7 @@ th {
   transform: scale(1.1);
 }
 .card-film:hover .card-film-title {
-  opacity: 0;
+  animation: text_entrance_card_film 0.8s ease 0s 1 normal forwards;
 }
 .card-film .card-img {
   width: 100%;
@@ -11104,12 +11104,16 @@ th {
 .card-film .card-film-title {
   position: absolute;
   bottom: 0;
-  background: rgb(255, 208, 0);
+  background-image: linear-gradient(to bottom, rgba(255, 208, 0, 0), #ffd000);
   color: rgb(0, 0, 0);
   font-weight: bold;
   width: 100%;
+  height: 30%;
   padding: 10px;
+  padding-top: 30%;
+  font-size: 20px;
   transition: 0.5s;
+  opacity: 0;
 }
 
 @media (max-width: 992px) {
@@ -11147,5 +11151,15 @@ th {
   .profile-btn {
     width: 20vw;
     height: 20vw;
+  }
+}
+@keyframes text_entrance_card_film {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }/*# sourceMappingURL=styles.css.map */
