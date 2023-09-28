@@ -2,14 +2,20 @@ import os
 import re
 import hashlib
 import dotenv
+
+import bd
+from profil import bp_profil
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_pymongo import PyMongo
+
 
 if not os.getenv('CONNEXION_BD'):
     dotenv.load_dotenv(".env")
 
 app = Flask(__name__)
+app.register_blueprint(bp_profil, url_prefix='/profil')
 app.config['MONGO_URI'] = os.getenv('CONNEXION_BD')
+
 app.secret_key = os.getenv('SECRET_KEY')
 
 mongo = PyMongo(app)

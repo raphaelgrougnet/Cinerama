@@ -11097,6 +11097,9 @@ th {
 .card-film:hover .card-film-title {
   animation: text_entrance_card_film 0.8s ease 0s 1 normal forwards;
 }
+.card-film:hover .delete-button {
+  opacity: 1;
+}
 .card-film .card-img {
   width: 100%;
   transition: 0.5s;
@@ -11112,6 +11115,97 @@ th {
   font-size: 20px;
   transition: 0.5s;
   opacity: 0;
+}
+
+.profil-card-film .card-film {
+  width: auto !important;
+}
+.profil-card-film .delete-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #f00;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: opacity 0.5s;
+  text-decoration: none;
+  opacity: 0;
+}
+.profil-card-film .delete-button:hover {
+  opacity: 0.8;
+}
+
+.premium-color {
+  color: #ebaa1e;
+}
+
+.info-user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mini-description {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-fav-vis {
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: top;
+     object-position: top;
+}
+
+.comment-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  max-width: 100%;
+}
+.comment-card__avatar {
+  height: 55px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 5px;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.comment-card__avatar__img {
+  width: 40px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.comment-card__content {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.comment-card__content__description {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.comment-card__content__metadata {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
+}
+.comment-card__content__metadata__film-title {
+  font-weight: bold;
+}
+.comment-card__content__metadata__nom {
+  font-weight: bold;
+  color: #ffffff;
+}
+.comment-card__content__metadata__username {
+  color: rgb(255, 208, 0);
+}
+.comment-card__content__metadata__comment-date {
+  color: #999;
 }
 
 @media (max-width: 992px) {
@@ -11132,6 +11226,16 @@ th {
   .sort-dropdown {
     width: 100%;
   }
+
+  .info-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #btn-personnalise {
+    display: flex;
+    margin-bottom: 20px;
+
   .card-film-title {
     opacity: 1 !important;
     animation: none !important;
@@ -11145,6 +11249,15 @@ th {
     width: 15vw;
     height: 15vw;
   }
+  .info-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #btn-personnalise {
+    display: flex;
+    margin-bottom: 20px;
+  }
 }
 @media (max-width: 576px) {
   .logo-navbar {
@@ -11154,6 +11267,22 @@ th {
     width: 20vw;
     height: 20vw;
   }
+
+  .info-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #btn-personnalise {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .nav-tabs {
+    flex-direction: column !important;
+  }
+  .mini-description {
+    flex-direction: column;
+
 }
 @keyframes text_entrance_card_film {
   0% {
@@ -11163,5 +11292,6 @@ th {
   100% {
     opacity: 1;
     transform: translateY(0);
+
   }
 }/*# sourceMappingURL=styles.css.map */
