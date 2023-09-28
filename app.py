@@ -63,7 +63,15 @@ def login():
             "last": utilisateur_trouve["last"],
             "email": utilisateur_trouve["email"],
             "username": utilisateur_trouve["username"],
-            "pfp" : utilisateur_trouve["pfp"]
+            "pfp" : utilisateur_trouve["pfp"],
+            "karma" : utilisateur_trouve["karma"],
+            "visionnes" : utilisateur_trouve["visionnes"],
+            "favoris" : utilisateur_trouve["favoris"],
+            "commentaires" : utilisateur_trouve["commentaires"],
+            "is_admin" : utilisateur_trouve["is_admin"],
+            "is_premium" : utilisateur_trouve["is_premium"]
+
+
         }
         if utilisateur_trouve:
             
@@ -164,7 +172,13 @@ def register():
             "email": email,
             "username": username,
             "password": passwordHashed,
-            "pfp" : "/static/images/profils/default_pfp.jpg"
+            "pfp" : "/static/images/profils/default_pfp.jpg",
+            "karma" : 0,
+            "visionnes" : [],
+            "favoris" : [],
+            "commentaires" : [],
+            "is_admin" : False,
+            "is_premium" : False
         }
         mongo.db.users.insert_one(nouvel_utilisateur)
         nouvel_utilisateur = mongo.db.users.find_one({"username": username, "password" : passwordHashed})
@@ -174,7 +188,13 @@ def register():
             "last": nouvel_utilisateur["last"],
             "email": nouvel_utilisateur["email"],
             "username": nouvel_utilisateur["username"],
-            "pfp" : nouvel_utilisateur["pfp"]
+            "pfp" : nouvel_utilisateur["pfp"],
+            "karma" : nouvel_utilisateur["karma"],
+            "visionnes" : nouvel_utilisateur["visionnes"],
+            "favoris" : nouvel_utilisateur["favoris"],
+            "commentaires" : nouvel_utilisateur["commentaires"],
+            "is_admin" : nouvel_utilisateur["is_admin"],
+            "is_premium" : nouvel_utilisateur["is_premium"]
         }
         session.permanent = True
         session["utilisateur"] = user
