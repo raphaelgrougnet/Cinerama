@@ -13,7 +13,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap");
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
 :root {
   --bs-blue: #007bff;
   --bs-indigo: #6610f2;
@@ -11095,7 +11095,7 @@ th {
   transform: scale(1.1);
 }
 .card-film:hover .card-film-title {
-  opacity: 0;
+  animation: text_entrance_card_film 0.8s ease 0s 1 normal forwards;
 }
 .card-film .card-img {
   width: 100%;
@@ -11104,17 +11104,20 @@ th {
 .card-film .card-film-title {
   position: absolute;
   bottom: 0;
-  background: rgb(255, 208, 0);
+  background: #ffd000;
   color: rgb(0, 0, 0);
   font-weight: bold;
   width: 100%;
   padding: 10px;
+  font-size: 20px;
   transition: 0.5s;
+  opacity: 0;
 }
 
 @media (max-width: 992px) {
   .logo-navbar {
     width: 20vw;
+    padding: 0;
   }
   .profile-btn {
     width: 10vw;
@@ -11129,6 +11132,10 @@ th {
   .sort-dropdown {
     width: 100%;
   }
+  .card-film-title {
+    opacity: 1 !important;
+    animation: none !important;
+  }
 }
 @media (max-width: 768px) {
   .logo-navbar {
@@ -11141,10 +11148,20 @@ th {
 }
 @media (max-width: 576px) {
   .logo-navbar {
-    width: 30vw;
+    width: 40vw;
   }
   .profile-btn {
     width: 20vw;
     height: 20vw;
+  }
+}
+@keyframes text_entrance_card_film {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }/*# sourceMappingURL=styles.css.map */
