@@ -11104,13 +11104,11 @@ th {
 .card-film .card-film-title {
   position: absolute;
   bottom: 0;
-  background-image: linear-gradient(to bottom, rgba(255, 208, 0, 0), #ffd000);
+  background: #ffd000;
   color: rgb(0, 0, 0);
   font-weight: bold;
   width: 100%;
-  height: 30%;
   padding: 10px;
-  padding-top: 30%;
   font-size: 20px;
   transition: 0.5s;
   opacity: 0;
@@ -11133,6 +11131,10 @@ th {
   }
   .sort-dropdown {
     width: 100%;
+  }
+  .card-film-title {
+    opacity: 1 !important;
+    animation: none !important;
   }
 }
 @media (max-width: 768px) {
