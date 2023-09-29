@@ -2,11 +2,15 @@
 
 {% block content %}
 <section class="mt-4">
-    {% if utilisateur.is_premium %}
-        <h1><i class="bi bi-star-fill premium-color"></i> {{utilisateur.username}}</h1>
-    {% else %}
-        <h1>{{utilisateur.username}}</h1>
-    {% endif %}
+        <h1>
+            {% if utilisateur.is_premium %}
+            <div class="tooltip-premium">
+                <i class="bi bi-star-fill premium-color"></i>
+                <span class="tooltiptext-premium">Utilisateur premium</span>
+            </div>
+            {% endif %} 
+            {{utilisateur.first}} {{utilisateur.last}}
+        </h1>
 </section>
 <section class="mt-3">
     {% if utilisateur.is_admin %}
@@ -44,8 +48,20 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="comment-card">
                     <div class="comment-card__avatar">
-                        <img class="comment-card__avatar__img" src="../static/images/profils/placeholder-profile.jpg" alt="Profile">
-                        <span class="comment-card__content__metadata__nom ms-4">Nathalie Portman <span class="comment-card__content__metadata__username">@petitchien123</span></span>
+                        <div>
+                            <img class="comment-card__avatar__img" src="{{ utilisateur.pfp }}" alt="Profile">
+                            <span class="comment-card__content__metadata__nom ms-2">
+                                {{utilisateur.first}} {{utilisateur.last}} <span class="comment-card__content__metadata__username">@{{utilisateur.username}}</span>
+                            </span>
+                        </div>
+                        <div class="me-2">
+                            <button class="btn btn-outline-success rounded">
+                                <i class="bi bi-hand-thumbs-up fs-4"></i>
+                            </button>
+                            <button class="btn btn-outline-danger rounded">
+                                <i class="bi bi-hand-thumbs-down fs-4"></i>
+                            </button>
+                        </div>
                     </div>
                     <div class="comment-card__content">
                         <p class="comment-card__content__description">
