@@ -48,20 +48,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="comment-card">
                     <div class="comment-card__avatar">
-                        <div>
-                            <img class="comment-card__avatar__img" src="{{ utilisateur.pfp }}" alt="Profile">
-                            <span class="comment-card__content__metadata__nom ms-2">
-                                {{utilisateur.first}} {{utilisateur.last}} <span class="comment-card__content__metadata__username">@{{utilisateur.username}}</span>
-                            </span>
-                        </div>
-                        <div class="me-2">
-                            <button class="btn btn-outline-success rounded">
-                                <i class="bi bi-hand-thumbs-up fs-4"></i>
-                            </button>
-                            <button class="btn btn-outline-danger rounded">
-                                <i class="bi bi-hand-thumbs-down fs-4"></i>
-                            </button>
-                        </div>
+                        <img class="comment-card__avatar__img" src="{{ utilisateur.pfp }}" alt="Profile">
+                        <span class="comment-card__content__metadata__nom ms-2 me-auto">
+                            <span class="comment-card__content__metadata__name">{{utilisateur.first}} {{utilisateur.last}}</span> <span class="comment-card__content__metadata__username">@{{utilisateur.username}}</span>
+                        </span>
                     </div>
                     <div class="comment-card__content">
                         <p class="comment-card__content__description">
@@ -72,7 +62,7 @@
                                 <span class="comment-card__content__metadata__film-title">Film : Black Panther</span>
                             </p>
                             <p class="comment-card__content__metadata">
-                                <span class="comment-card__content__metadata__comment-date">Poster le 27 septembre, 2023</span>
+                                <span class="comment-card__content__metadata__comment-date">Posté le 27 septembre, 2023</span>
                             </p>
                         </div>                        
                     </div>

@@ -46,14 +46,25 @@
               <li class="nav-item">
                 <a class="nav-link {% block posts_active %}{% endblock %}" href="/posts">Posts</a>
               </li>
+              <li class="nav-item is-logout-active">
+                <a class="nav-link" href="/logout">Déconnexion</a>
+              </li>
             </ul>
             {% if utilisateur %}
-            <div class="profile-btn">
 
-                <a class="profile-btn" href="/profil">
-                    <img src="{{ utilisateur.pfp }}" alt="Profile" class="profile-img">
-                </a>
+            <div class="dropdown-profile-container">
+              <a class="profile-btn" href="/profil">
+                <img src="{{ utilisateur.pfp }}" alt="Profile" class="profile-img">
+              </a>
+              <div class="dropdown-profile">
+                <a  href="/profil/visionne">Films visionnés <i class="bi bi-eye ms-4"></i></a>
+                <a  href="/profil/favoris">Films favoris <i class="bi bi-heart ms-4"></i></a>
+                <a  href="/profil">Commentaires <i class="bi bi-chat ms-4"></i></a>
+                <hr class="dropdown-divider">
+                <a  href="/logout">Déconnexion <i class="bi bi-box-arrow-right ms-4"></i></a> 
+              </div>
             </div>
+            
             {% else %}
               <a href="/login" class="btn btn-primary text-center d-flex align-items-center justify-content-center text-white">Se connecter <i class="bi bi-box-arrow-in-right fs-3 ms-2"></i></a>
             {% endif %}
