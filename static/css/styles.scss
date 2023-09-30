@@ -40,14 +40,34 @@
             display: block;
         }   
     }
+
+    
+
     .dropdown-profile{
         position: absolute;
         text-align: start;
-        right: 0;
+        right: 150%;
+        top: 0;
         z-index: 1000;
         display: none;
         color: white;
         transition: opacity 0.5s;
+
+
+
+        &::before {
+            width: 25px;
+            height: 25px;
+            background: black;
+            content: "";
+            display: block;
+            position: absolute;
+            right: -6.3%;
+            top: 9.4%;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
         a{
             display: flex;
             justify-content: space-between;
@@ -357,7 +377,17 @@ opacity: 1;
     .dropdown-profile-container{
         
         .dropdown-profile{
-            right: inherit;
+            bottom: 15%;
+            top: initial;
+            left: 150%;
+            right: initial;
+
+            &::before{
+                left: -6.3%;
+                bottom: 9.4%;
+                right: initial;
+                top: initial;
+            }
         }
     }
 
