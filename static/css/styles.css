@@ -11021,17 +11021,33 @@ th {
   position: relative;
   display: inline-block;
 }
+.dropdown-profile-container:hover {
+  padding-left: 20px;
+}
 .dropdown-profile-container:hover .dropdown-profile {
   display: block;
 }
 .dropdown-profile-container .dropdown-profile {
   position: absolute;
   text-align: start;
-  right: 0;
+  right: 105%;
+  top: 0;
   z-index: 1000;
   display: none;
   color: white;
   transition: opacity 0.5s;
+}
+.dropdown-profile-container .dropdown-profile::before {
+  width: 25px;
+  height: 25px;
+  background: black;
+  content: "";
+  display: block;
+  position: absolute;
+  right: -6.3%;
+  top: 9.4%;
+  transform: rotate(45deg);
+  z-index: -1;
 }
 .dropdown-profile-container .dropdown-profile a {
   display: flex;
@@ -11284,7 +11300,20 @@ th {
     height: 10vw !important;
   }
   .dropdown-profile-container .dropdown-profile {
-    right: inherit;
+    bottom: 15%;
+    top: initial;
+    left: 105%;
+    right: initial;
+  }
+  .dropdown-profile-container .dropdown-profile::before {
+    left: -6.3%;
+    bottom: 9.4%;
+    right: initial;
+    top: initial;
+  }
+  .dropdown-profile-container:hover {
+    padding-left: 0;
+    padding-right: 20px;
   }
   .searchbar-bundle {
     flex-direction: column;
