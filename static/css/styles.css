@@ -11021,13 +11021,16 @@ th {
   position: relative;
   display: inline-block;
 }
+.dropdown-profile-container:hover {
+  padding-left: 20px;
+}
 .dropdown-profile-container:hover .dropdown-profile {
   display: block;
 }
 .dropdown-profile-container .dropdown-profile {
   position: absolute;
   text-align: start;
-  right: 150%;
+  right: 105%;
   top: 0;
   z-index: 1000;
   display: none;
@@ -11299,7 +11302,7 @@ th {
   .dropdown-profile-container .dropdown-profile {
     bottom: 15%;
     top: initial;
-    left: 150%;
+    left: 105%;
     right: initial;
   }
   .dropdown-profile-container .dropdown-profile::before {
@@ -11307,6 +11310,10 @@ th {
     bottom: 9.4%;
     right: initial;
     top: initial;
+  }
+  .dropdown-profile-container:hover {
+    padding-left: 0;
+    padding-right: 20px;
   }
   .searchbar-bundle {
     flex-direction: column;

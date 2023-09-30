@@ -39,6 +39,7 @@
         .dropdown-profile{
             display: block;
         }   
+        padding-left: 20px;
     }
 
     
@@ -46,7 +47,7 @@
     .dropdown-profile{
         position: absolute;
         text-align: start;
-        right: 150%;
+        right: 105%;
         top: 0;
         z-index: 1000;
         display: none;
@@ -379,7 +380,7 @@ opacity: 1;
         .dropdown-profile{
             bottom: 15%;
             top: initial;
-            left: 150%;
+            left: 105%;
             right: initial;
 
             &::before{
@@ -388,6 +389,11 @@ opacity: 1;
                 right: initial;
                 top: initial;
             }
+        }
+
+        &:hover{
+            padding-left: 0;
+            padding-right : 20px ;
         }
     }
 
