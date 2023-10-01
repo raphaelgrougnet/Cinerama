@@ -11376,12 +11376,10 @@ th {
     width: 100%;
   }
   .scroller-container .left-arrow {
-    left: -2%;
-    transform: translateY(-50%) translateX(0);
+    display: none;
   }
   .scroller-container .right-arrow {
-    right: -2%;
-    transform: translateY(-50%) translateX(0);
+    display: none;
   }
   .info-user {
     display: flex;
