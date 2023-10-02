@@ -57,6 +57,8 @@ def login():
         passwordHashed = hacher_mdp(password)
         utilisateur_trouve = mongo.db.users.find_one(
             {"username": username, "password": passwordHashed})
+        if not utilisateur_trouve:
+            return render_template('login.html', utilisateur = None)
         user = {
             "_id": str(utilisateur_trouve["_id"]),
             "first": utilisateur_trouve["first"],
@@ -70,17 +72,13 @@ def login():
             "commentaires" : utilisateur_trouve["commentaires"],
             "is_admin" : utilisateur_trouve["is_admin"],
             "is_premium" : utilisateur_trouve["is_premium"]
-
-
         }
-        if utilisateur_trouve:
-            
-            session.permanent = True
-            session["utilisateur"] = user
-            return redirect(url_for('index'), 303)
 
-        if not utilisateur_trouve:
-            return render_template('login.html', utilisateur=session.get("utilisateur"))
+        session.permanent = True
+        session["utilisateur"] = user
+        return redirect(url_for('index'), 303)
+
+        
     return render_template('login.html', class_erreur_login="visually-hidden", utilisateur=session.get("utilisateur"))
 
 
