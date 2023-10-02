@@ -11243,7 +11243,7 @@ body .logo.fade {
 .card-film .card-film-title {
   position: absolute;
   bottom: 0;
-  background: #ffd000;
+  background: rgb(255, 208, 0);
   color: rgb(0, 0, 0);
   font-weight: bold;
   width: 100%;
