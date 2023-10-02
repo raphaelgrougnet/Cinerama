@@ -3,7 +3,7 @@ import re
 import hashlib
 import dotenv
 from profil import bp_profil
-from flask import Flask, render_template, session, request, redirect, url_for
+from flask import Flask, render_template, session, request, redirect, url_for, make_response
 from flask_pymongo import PyMongo
 
 
@@ -26,7 +26,10 @@ def hacher_mdp(mdp_en_clair):
 
 @app.route('/')
 def index():
-    return render_template('index.html', utilisateur=session.get("utilisateur"))
+    print(request.cookies.get('introPlayed') )
+    resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), introPlayed=request.cookies.get('introPlayed')))
+    resp.set_cookie('introPlayed', "True")
+    return resp
 
 
 @app.route('/login', methods=['GET', 'POST'])

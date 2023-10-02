@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% block accueil_active %}active{% endblock %}
-{% block content %}
+{% block intro %}
+    {% if not introPlayed %}
+    <div class="intro">
+        <h1 class="logo-header">
+        <img src="../static/images/logo/LogoCineramaTextWhite.svg" alt="Logo" class="logo">
+        </h1>
+    </div>
+    {% endif %}
+{% endblock %}
 
+    
+
+
+
+{% block content %}
     <section class="pt-4">
         <div class="searchbar-bundle">
             <div class="sort-dropdown">

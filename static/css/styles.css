@@ -11014,6 +11014,7 @@ body .logo {
   display: inline-block;
   bottom: -20px;
   opacity: 0;
+  width: 100%;
 }
 body .logo.active {
   opacity: 1;
