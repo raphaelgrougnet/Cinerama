@@ -10990,6 +10990,42 @@ th {
   color: inherit;
 }
 
+body {
+  position: relative;
+}
+body .intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  transition: 1s;
+}
+body .logo-header {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+body .logo {
+  position: relative;
+  display: inline-block;
+  bottom: -20px;
+  opacity: 0;
+}
+body .logo.active {
+  opacity: 1;
+  bottom: 0;
+  transition: ease-in-out 0.5s;
+}
+body .logo.fade {
+  bottom: 150px;
+  opacity: 0;
+  transition: ease-in-out 0.5s;
+}
+
 .navbar, footer {
   background-color: rgb(255, 208, 0);
 }
