@@ -26,7 +26,6 @@ def hacher_mdp(mdp_en_clair):
 
 @app.route('/')
 def index():
-    print(request.cookies.get('introPlayed') )
     resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), introPlayed=request.cookies.get('introPlayed')))
     resp.set_cookie('introPlayed', "True")
     return resp
