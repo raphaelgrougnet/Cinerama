@@ -52,35 +52,12 @@
                 <i class="bi bi-caret-left-fill"></i>
             </div>
             <div class="scroller mb-80px" id="scroller-recents">
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                
+                {% for film in films %}
+                  <div class="card-film">
+                      <a href="#"><img src="{{film.Poster}}" alt="Photo du film {{film.Title}}" class="card-img"></a>
+                      <p class="card-film-title m-0">{{film.Title}}<br>{{film.Released}}</p>
+                  </div>
+                {% endfor %}
             </div>
             <div class="right-arrow" id="right-arrow-recents">
                 <i class="bi bi-caret-right-fill"></i>

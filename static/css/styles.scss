@@ -279,6 +279,7 @@ body{
 .card-film{
     display: inline-block;
     width: 300px;
+    height: 450px;
     border-radius: 10px;
     border-style: none;
     overflow: hidden;
@@ -303,7 +304,7 @@ body{
     .card-img{
         width: 100%;
         transition: 0.5s;
-        
+
     }
 
     .card-film-title{
