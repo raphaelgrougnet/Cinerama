@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="mb-4">
-            <label for="password1" class="sr-only">Mot de passe <span style="color:red;">*</span></label>
+            <label for="password1" class="sr-only">Mot de passe <span style="color:red;">*</span> <i class="bi bi-info-circle" data-bs-toggle="tooltip" data-bs-title="Le mot de passe doit contenir 8 caractères minimum, une masjuscule, un chiffre et un symbole."></i></label>
             <input type="password" id="password1" name="password1" class="form-control my-2 {{ classe_erreur.password1 }}" placeholder="Mot de passe">
             <div class="invalid-feedback">
                 {{ contenu_erreur.password1 }}.

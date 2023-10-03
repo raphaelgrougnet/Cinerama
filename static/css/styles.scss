@@ -14,18 +14,81 @@
     padding-bottom: 15px;
 }
 
-.profile-btn{
-    border-radius: 50%;
-    border-style: none; 
-    overflow: hidden;
-    padding: 0;
-    width: 5vw;
-    height: 5vw;
+.is-logout-active{
+    display: none;
+}
 
+.profile-btn{
+    
+    border-style: none;
+    padding: 0;
+    
     .profile-img{
-        width: 100%;
+        width: 5vw;
+        height: 5vw;
+        border-radius: 50%;
+    }
+
+    
+}
+
+.dropdown-profile-container{
+    position: relative;
+    display: inline-block;
+    &:hover{
+        .dropdown-profile{
+            display: block;
+        }   
+        padding-left: 20px;
+    }
+
+    
+
+    .dropdown-profile{
+        position: absolute;
+        text-align: start;
+        right: 105%;
+        top: 0;
+        z-index: 1000;
+        display: none;
+        color: white;
+        transition: opacity 0.5s;
+
+
+
+        &::before {
+            width: 25px;
+            height: 25px;
+            background: black;
+            content: "";
+            display: block;
+            position: absolute;
+            right: -6.3%;
+            top: 9.4%;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        a{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @extend .dropdown-item;
+            padding: 6px 12px ;
+            background-color: rgb(0, 0, 0);
+            &:hover{
+                background-color: rgb(19, 19, 19);
+            }
+
+
+            i{
+                font-size: 1.5rem;
+            }
+        }
     }
 }
+
+
 
 .searchbar-bundle{
     display: flex;
@@ -75,7 +138,57 @@
     width: 100%;
 }
 
+.scroller-container{
+    position: relative;
 
+    .left-arrow{
+        color: white;
+        font-size: 1.5rem;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        text-align: center;
+        width: 50px;
+        height: 50px;
+        z-index: 100;
+        top: 50%;
+        left: -2%;
+        transform: translateY(-50%) translateX(2%);
+        background-color: rgb(0, 0, 0);
+        border-radius: 50%;
+        cursor: pointer;
+
+        &:hover{
+            cursor: pointer;
+            background-color: rgb(255, 208, 0);
+            color: black;
+        }
+    }
+
+    .right-arrow{
+        color: white;
+        font-size: 1.5rem;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        text-align: center;
+        z-index: 100;
+        width: 50px;
+        height: 50px;
+        right: -2%;
+        top: 50%;
+        transform: translateY(-50%) translateX(-2%);
+        background-color: rgb(0, 0, 0);
+        border-radius: 50%;
+        &:hover{
+            cursor: pointer;
+            background-color: rgb(255, 208, 0);
+            color: black;
+        }
+    }
+}
 
 .scroller{
     border-radius: 10px;
@@ -84,6 +197,10 @@
     grid-gap: 20px;
     width: 100%;
     overflow-x: scroll;
+    position: relative;
+    scroll-behavior: smooth;
+
+
     &::-webkit-scrollbar {
         width: 16px;
         border-radius: 0 0 15px 15px;
@@ -217,7 +334,7 @@
         background-size: cover;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-start;
 
         //Image de l'avatar
         &__img {
@@ -292,14 +409,51 @@ opacity: 1;
 }
 
 @media (max-width: 992px) {
+
+    .is-logout-active{
+        display: block;
+    }
+    ::-webkit-scrollbar {
+        display: none;
+        width: 16px;
+        border-radius: 0 0 15px 15px;
+      }
+ 
+
     .logo-navbar{
         width: 20vw;
         padding : 0;
     }
-    .profile-btn{
-        width: 10vw;
-        height: 10vw;
+    .profile-img{
+        width: 10vw !important;
+        height: 10vw !important;
     }
+
+
+    .dropdown-profile-container{
+        
+        .dropdown-profile{
+            bottom: 15%;
+            top: initial;
+            left: 105%;
+            right: initial;
+
+            &::before{
+                left: -6.3%;
+                bottom: 9.4%;
+                right: initial;
+                top: initial;
+            }
+        }
+
+        &:hover{
+            padding-left: 0;
+            padding-right : 20px ;
+        }
+    }
+
+
+
     .searchbar-bundle{
         flex-direction: column;
         button{
@@ -311,6 +465,14 @@ opacity: 1;
         width: 100%;
     }
 
+    .scroller-container{
+        .left-arrow{
+            display: none;
+        }
+        .right-arrow{
+            display: none;
+        }
+    }
 
     .info-user{
         display: flex;
@@ -335,9 +497,9 @@ opacity: 1;
     .logo-navbar{
         width: 25vw;
     }
-    .profile-btn{
-        width: 15vw;
-        height: 15vw;
+    .profile-img{
+        width: 15vw !important;
+        height: 15vw !important;
     }
     .info-user{
         display: flex;
@@ -355,9 +517,9 @@ opacity: 1;
     .logo-navbar{
         width: 40vw;
     }
-    .profile-btn{
-        width: 20vw;
-        height: 20vw;
+    .profile-img{
+        width: 20vw !important;
+        height: 20vw !important;
     }
     .info-user{
         display: flex;
@@ -375,6 +537,40 @@ opacity: 1;
 
     .mini-description{
         flex-direction: column;
+    }
+}
+
+// POUR LE MINIMUM D'AFFICHAGE ( GALAXY FOLD )
+@media (max-width: 280px){
+    .comment-card {
+        
+      
+        // Avatar du User
+        
+        //Le contenu du commentaire
+        &__content {
+            
+    
+            //La discription du film
+            
+            
+            //Les data du commentaire
+            &__metadata {
+                
+      
+                &__nom {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    
+                }
+
+                &__name{
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
     }
 }
 
