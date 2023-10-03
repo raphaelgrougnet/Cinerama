@@ -2,6 +2,7 @@ import os
 import re
 import hashlib
 import dotenv
+from datetime import datetime
 from profil import bp_profil
 from flask import Flask, render_template, session, request, redirect, url_for
 from flask_pymongo import PyMongo
@@ -26,7 +27,11 @@ def hacher_mdp(mdp_en_clair):
 
 @app.route('/')
 def index():
-    return render_template('index.html', utilisateur=session.get("utilisateur"))
+    films = list(mongo.db.films.find().sort('Released', -1))
+    for film in films:
+        date = film["Released"]
+        film["Released"] = date.strftime("%d-%m-%Y")
+    return render_template('index.html', utilisateur=session.get("utilisateur"), films=films)
 
 
 @app.route('/login', methods=['GET', 'POST'])
