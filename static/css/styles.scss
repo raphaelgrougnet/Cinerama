@@ -246,6 +246,7 @@
         .delete-button{
             opacity: 1;
         }
+        
     }
 
     .card-img{
@@ -266,6 +267,65 @@
         transition: 0.5s;
         opacity: 0;
     }
+
+    .card-film-note-meta {
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        background: #00ce7a;
+        color: #000000;
+        border-radius: 5px;
+        padding: 10px 10px;
+        z-index: 1;
+        width: 65px;
+        height: 65px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-weight: bold;
+        font-size: large;
+    }
+
+    .card-film-note-imdb{
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 55px;
+        height: 55px;
+        color: #000000;
+        font-weight: bold;
+    }
+
+    .img-meta{
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+    .imdb{
+        background-color: #ffd000;
+        color: #000000;
+    }
+
+    .img-star{
+        width: 75px;
+        height: 75px;
+
+    }
+
+    .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+      }
+    
 }
 
 .profil-card-film{

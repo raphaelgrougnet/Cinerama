@@ -41,7 +41,7 @@
             <div class="scroller mb-80px" id="scroller-recents">
                 {% for film in films %}
                   <div class="card-film">
-                      <a href="#"><img src="{{film.Poster}}" alt="Photo du film {{film.Title}}" class="card-img"></a>
+                      <a href="/film/{{film._id}}"><img src="{{film.Poster}}" alt="Photo du film {{film.Title}}" class="card-img"></a>
                       <p class="card-film-title m-0">{{film.Title}}<br>{{film.Released}}</p>
                   </div>
                 {% endfor %}
@@ -58,35 +58,16 @@
                 <i class="bi bi-caret-left-fill"></i>
             </div>
             <div class="scroller" id="scroller-bests">
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-                <div class=" card-film">
-                    <a href=""><img src="../static/images/films/blackpanther.jpg" alt="film" class="card-img"></a>
-                    <p class="card-film-title m-0">Black Panther<br>28/09/2023</p>
-                </div>
-    
+                {% for film in films_notes %}
+                    <div class=" card-film">
+                        <a href=""><img src="{{film.Poster}}" alt="Photo du film {{film.Title}}" class="card-img"></a>
+                        <p class="card-film-title m-0">{{film.Title}}<br>{{film.Released}}</p>
+                        <div class="card-film-note-meta m-0">
+                            <img class="img-meta" src="../static/images/films/Metacritic_M.png" alt="Metascore">
+                            <p class="m-0">{{film.Metascore}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
             <div class="right-arrow" id="right-arrow-bests">
                 <i class="bi bi-caret-right-fill"></i>
