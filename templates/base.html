@@ -49,9 +49,11 @@
             <li class="nav-item">
               <a class="nav-link {% block posts_active %}{% endblock %}" href="/posts">Posts</a>
             </li>
+            {% if utilisateur %}
             <li class="nav-item is-logout-active">
               <a class="nav-link" href="/logout">Déconnexion</a>
             </li>
+            {% endif %}
           </ul>
           {% if utilisateur %}
           <div class="dropdown-profile-container">
