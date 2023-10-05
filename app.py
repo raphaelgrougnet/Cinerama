@@ -32,7 +32,7 @@ def index():
         date = film["Released"]
         film["Released"] = date.strftime("%d-%m-%Y")
     resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), films=films, introPlayed=request.cookies.get('introPlayed')))
-    resp.set_cookie('introPlayed', "True")
+    resp.set_cookie('introPlayed', "True", expires=datetime.datetime.now() + datetime.timedelta(days=1))
     return resp
 
 @app.route('/login', methods=['GET', 'POST'])
