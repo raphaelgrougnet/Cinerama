@@ -41,9 +41,12 @@ def index():
         film["_id"] = id
         film["Released"] = date.strftime("%d-%m-%Y")
         print(film["Metascore"])
+
     
-    resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), films=films, films_notes=films_notes, introPlayed=request.cookies.get('introPlayed')))
+    resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), films=films, films_notes=films_notes, introPlayed=request.cookies.get('introPlayed'), class_connexion_succes=request.cookies.get('newLoggin'), class_deconnexion_succes=request.cookies.get('newLoggout')))
     resp.set_cookie('introPlayed', "True", expires=datetime.now() + timedelta(days=1))
+    resp.set_cookie('newLoggin', 'hide')
+    resp.set_cookie('newLoggout', 'hide')
     return resp
 
 
@@ -94,7 +97,9 @@ def login():
 
         session.permanent = True
         session["utilisateur"] = user
-        return redirect(url_for('index'), 303)
+        resp = make_response(redirect(url_for('index'), 303))
+        resp.set_cookie('newLoggin', 'show')
+        return resp
 
         
     return render_template('login.html', class_erreur_login="visually-hidden", utilisateur=session.get("utilisateur"))
@@ -226,4 +231,6 @@ def register():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    resp = make_response(redirect(url_for('index'), 303))
+    resp.set_cookie('newLoggout', 'show')
+    return resp
