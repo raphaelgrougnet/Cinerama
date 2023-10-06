@@ -9,17 +9,17 @@ var scrollerBests = document.getElementById("scroller-bests");
 var scrollerRecent = document.getElementById("scroller-recents");
 
 leftArrowRecent.addEventListener("click", function() {
-    scrollerRecent.scrollBy(-300, 0);
+    scrollerRecent.scrollBy(-1277, 0);
 });
 
 rightArrowRecent.addEventListener("click", function() {
-    scrollerRecent.scrollBy(300, 0);
+    scrollerRecent.scrollBy(1277, 0);
 });
 
 leftArrowBests.addEventListener("click", function() {
-    scrollerBests.scrollBy(-300, 0);
+    scrollerBests.scrollBy(-1277, 0);
 });
 
 rightArrowBests.addEventListener("click", function() {
-    scrollerBests.scrollBy(300, 0);
+    scrollerBests.scrollBy(1277, 0);
 });

@@ -4,7 +4,7 @@ import hashlib
 import dotenv
 from datetime import datetime
 from profil import bp_profil
-from flask import Flask, render_template, session, request, redirect, url_for
+from flask import Flask, render_template, session, request, redirect, url_for, make_response
 from flask_pymongo import PyMongo
 
 
@@ -42,7 +42,9 @@ def index():
         film["Released"] = date.strftime("%d-%m-%Y")
         print(film["Metascore"])
     
-    return render_template('index.html', utilisateur=session.get("utilisateur"), films=films, films_notes=films_notes)
+    resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), films=films, films_notes=films_notes, introPlayed=request.cookies.get('introPlayed')))
+    resp.set_cookie('introPlayed', "True", expires=datetime.datetime.now() + datetime.timedelta(days=1))
+    return resp
 
 
 @app.route('/login', methods=['GET', 'POST'])
