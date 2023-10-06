@@ -28,12 +28,24 @@ def hacher_mdp(mdp_en_clair):
 @app.route('/')
 def index():
     films = list(mongo.db.films.find().sort('Released', -1))
+    films_notes = list(mongo.db.films.find().sort('Metascore', -1))
     for film in films:
         date = film["Released"]
+        id = str(film["_id"])
+        film["_id"] = id
         film["Released"] = date.strftime("%d-%m-%Y")
-    resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), films=films, introPlayed=request.cookies.get('introPlayed')))
+
+    for film in films_notes:
+        date = film["Released"]
+        id = str(film["_id"])
+        film["_id"] = id
+        film["Released"] = date.strftime("%d-%m-%Y")
+        print(film["Metascore"])
+    
+    resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), films=films, films_notes=films_notes, introPlayed=request.cookies.get('introPlayed')))
     resp.set_cookie('introPlayed', "True", expires=datetime.datetime.now() + datetime.timedelta(days=1))
     return resp
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
