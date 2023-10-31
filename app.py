@@ -4,6 +4,7 @@ import hashlib
 import dotenv
 from datetime import *
 from profil import bp_profil
+from film import bp_film
 from flask import Flask, render_template, session, request, redirect, url_for, make_response
 from flask_pymongo import PyMongo
 
@@ -13,6 +14,7 @@ if not os.getenv('CONNEXION_BD'):
 
 app = Flask(__name__)
 app.register_blueprint(bp_profil, url_prefix='/profil')
+app.register_blueprint(bp_film, url_prefix='/film')
 app.config['MONGO_URI'] = os.getenv('CONNEXION_BD')
 
 app.secret_key = os.getenv('SECRET_KEY')
@@ -44,7 +46,7 @@ def index():
 
     
     resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), films=films, films_notes=films_notes, introPlayed=request.cookies.get('introPlayed'), class_connexion_succes=request.cookies.get('newLoggin'), class_deconnexion_succes=request.cookies.get('newLoggout')))
-    resp.set_cookie('introPlayed', "True", expires=datetime.now() + timedelta(days=1))
+    resp.set_cookie('introPlayed', "True")
     resp.set_cookie('newLoggin', 'hide')
     resp.set_cookie('newLoggout', 'hide')
     return resp

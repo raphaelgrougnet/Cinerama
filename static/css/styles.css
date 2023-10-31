@@ -7673,7 +7673,7 @@ textarea.form-control-lg {
   margin-bottom: 0.5rem !important;
 }
 
-.mb-3 {
+.mb-3, #poster-details-film {
   margin-bottom: 1rem !important;
 }
 
@@ -11421,6 +11421,37 @@ body .logo.fade {
   opacity: 1;
 }
 
+.div-metascore-details-film {
+  position: relative;
+  width: 75px;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border-radius: 5px;
+}
+.div-metascore-details-film * {
+  margin: 0;
+}
+.div-metascore-details-film p {
+  color: black;
+}
+.div-metascore-details-film img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25px;
+  height: 25px;
+}
+
+#poster-details-film {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 30%;
+}
+
 @media (max-width: 992px) {
   .is-logout-active {
     display: block;
@@ -11499,6 +11530,12 @@ body .logo.fade {
   #btn-personnalise {
     display: flex;
     margin-bottom: 20px;
+  }
+  #poster-details-film {
+    height: 400px !important;
+    width: 100% !important;
+    -o-object-fit: contain !important;
+       object-fit: contain !important;
   }
 }
 @media (max-width: 576px) {

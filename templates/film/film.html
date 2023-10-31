@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-lg-flex d-md-flex gap-4 pt-4">
+
+    <img src="{{ film.Poster }}" alt="{{ film.Title }}" style="height: fit-content; width: 30%;" id="poster-details-film">
+
+    <div class="d-flex flex-column flex-grow-1">
+        <h2 class="fw-bold">{{ film.Title }}</h2>
+        <p><span class="fw-bold">Date de sortie :</span> {{film.Released}}</p>
+        <hr width="100%">
+        <p><span class="fw-bold">Réalisateur :</span> {{film.Director}}</p>
+        <p><span class="fw-bold">Acteurs :</span> {{film.Actors}}</p>
+        <p><span class="fw-bold">Genre :</span> {{film.Genre}}</p>
+        <p><span class="fw-bold">Durée :</span> {{film.Runtime}}</p>
+        <p><span class="fw-bold">Pays :</span> {{film.Country}}</p>
+        <p><span class="fw-bold">Langue :</span> {{film.Language}}</p>
+        <hr width="100%">
+        <div class="mb-2">
+            <p>M E T A S C O R E</p>
+            {% if film.Metascore == "N/A" %}
+            <div class="div-metascore-details-film">
+            {% elif film.Metascore <= 25 %}
+            <div class="div-metascore-details-film bg-danger">
+            {% elif film.Metascore <= 50 %}
+            <div class="div-metascore-details-film bg-warning">
+            {% elif film.Metascore <= 75 %}
+            <div class="div-metascore-details-film bg-info">
+            {% elif film.Metascore <= 100 %}
+            <div class="div-metascore-details-film bg-success">
+            {% endif %}
+                <img src="/static/images/films/Metacritic_M.png" alt="Metacritic_M">
+                <p>{{film.Metascore}}</p>
+            </div>
+        </div>
+        {% if film.Metascore == "N/A" %}
+        <p>Aucun avis sur ce film</p>
+        {% elif film.Metascore <= 25 %}
+        <p class="">Pas dutout apprécié</p>
+        <div class="progress">
+            <div id="progress-bar" class="progress-bar bg-danger" role="progressbar" data-width="{{film.Metascore}}" aria-valuenow="{{film.Metascore}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        {% elif film.Metascore <= 50 %}
+        <p class="">Peu apprécié</p>
+        <div class="progress">
+            <div id="progress-bar" class="progress-bar bg-warning" role="progressbar" data-width="{{film.Metascore}}" aria-valuenow="{{film.Metascore}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        {% elif film.Metascore <= 75 %}
+        <p class="">Généralement apprécié</p>
+        <div class="progress">
+            <div id="progress-bar" class="progress-bar bg-info" role="progressbar" data-width="{{film.Metascore}}" aria-valuenow="{{film.Metascore}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        {% elif film.Metascore <= 100 %}
+        <p class="">Très apprécié</p>
+        <div class="progress">
+            <div id="progress-bar" class="progress-bar bg-success" role="progressbar" data-width="{{film.Metascore}}" aria-valuenow="{{film.Metascore}}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        {% endif %}
+        {% set metascore = film.Metascore %}
+        <script defer>
+            // Définir la variable JavaScript dans une balise Jinja2
+            var dataWidth = document.querySelector('#progress-bar').dataset.width;
+            console.log("🚀 ~ file: film.html:53 ~ ariaValuenow:", dataWidth)
+            // Utiliser la variable dans votre code JavaScript
+            window.onload = function(){
+                document.querySelector("#progress-bar").style.width = dataWidth + "%";
+                console.log(document.querySelector('#progress-bar').style.width + "%")
+            };
+        </script>
+
+        {% if film.Metascore == "N/A" %}
+        <p class="text-center">Aucune note</p>
+        {% else %}
+        
+        {% endif %}
+        
+        
+    </div>
+
+    
+    
+</div>
+
+<div>
+    <hr width="100%">
+    <div>
+        <h2>Ajouter un commentaire</h2>
+        <form class="">
+            <label for="commentaire">Votre commentaire</label>
+            <div class="d-flex">
+                <textarea class="form-control me-2" id="commentaire" rows="3" ></textarea>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-send-plus fs-1"></i></button>
+
+            </div>
+        </form>
+    </div>
+    
+
+    
+
+    <div class="section-commentaire">
+        {% for commentaire in commentaires %}
+        <div class="comment-card mt-2">
+            <div class="comment-card__avatar">
+                <img class="comment-card__avatar__img" src="{{ commentaire.utilisateur.pfp }}" alt="Profile">
+                <span class="comment-card__content__metadata__nom ms-2 me-auto">
+                    <span class="comment-card__content__metadata__name">{{commentaire.utilisateur.first}} {{commentaire.utilisateur.last}}</span> <span class="comment-card__content__metadata__username">@{{commentaire.utilisateur.username}}</span>
+                </span>
+            </div>
+            <div class="comment-card__content">
+                <p class="comment-card__content__description">
+                    {{commentaire.description}}
+                </p>
+                <div class="mini-description">
+                    <p class="comment-card__content__metadata">
+                        <span class="comment-card__content__metadata__film-title">Film : {{film.Title}}</span>
+                    </p>
+                    <p class="comment-card__content__metadata">
+                        <span class="comment-card__content__metadata__comment-date">Posté le {{commentaire.date_post}}</span>
+                    </p>
+                </div>                        
+            </div>
+        </div> 
+        {% endfor %}
+        
+    </div>
+
+    
+        
+    
+</div>
+
+{% endblock %}
