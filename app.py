@@ -4,6 +4,8 @@ import hashlib
 import dotenv
 from datetime import *
 from profil import bp_profil
+from film import bp_film
+from bson.objectid import ObjectId
 from flask import Flask, render_template, session, request, redirect, url_for, make_response
 from flask_pymongo import PyMongo
 
@@ -13,6 +15,7 @@ if not os.getenv('CONNEXION_BD'):
 
 app = Flask(__name__)
 app.register_blueprint(bp_profil, url_prefix='/profil')
+app.register_blueprint(bp_film, url_prefix='/film')
 app.config['MONGO_URI'] = os.getenv('CONNEXION_BD')
 
 app.secret_key = os.getenv('SECRET_KEY')
@@ -40,11 +43,10 @@ def index():
         id = str(film["_id"])
         film["_id"] = id
         film["Released"] = date.strftime("%d-%m-%Y")
-        print(film["Metascore"])
 
     
     resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), films=films, films_notes=films_notes, introPlayed=request.cookies.get('introPlayed'), class_connexion_succes=request.cookies.get('newLoggin'), class_deconnexion_succes=request.cookies.get('newLoggout')))
-    resp.set_cookie('introPlayed', "True", expires=datetime.now() + timedelta(days=1))
+    resp.set_cookie('introPlayed', "True")
     resp.set_cookie('newLoggin', 'hide')
     resp.set_cookie('newLoggout', 'hide')
     return resp
@@ -88,12 +90,23 @@ def login():
             "username": utilisateur_trouve["username"],
             "pfp" : utilisateur_trouve["pfp"],
             "karma" : utilisateur_trouve["karma"],
-            "visionnes" : utilisateur_trouve["visionnes"],
-            "favoris" : utilisateur_trouve["favoris"],
-            "commentaires" : utilisateur_trouve["commentaires"],
+            "visionnes" : list(),
+            "favoris" : list(),
+            "commentaires" : list(),
             "is_admin" : utilisateur_trouve["is_admin"],
             "is_premium" : utilisateur_trouve["is_premium"]
         }
+
+        for i in range(len(utilisateur_trouve["visionnes"])):
+            utilisateur_trouve["visionnes"][i] = str(ObjectId(utilisateur_trouve["visionnes"][i]))
+
+        for i in range(len(utilisateur_trouve["favoris"])):
+            utilisateur_trouve["favoris"][i] = str(ObjectId(utilisateur_trouve["favoris"][i]))
+        
+        for i in range(len(utilisateur_trouve["commentaires"])):
+            utilisateur_trouve["commentaires"][i] = str(ObjectId(utilisateur_trouve["commentaires"][i]))
+
+        print(utilisateur_trouve["commentaires"])
 
         session.permanent = True
         session["utilisateur"] = user
