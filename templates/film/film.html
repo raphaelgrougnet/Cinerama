@@ -59,11 +59,9 @@
         <script defer>
             // Définir la variable JavaScript dans une balise Jinja2
             var dataWidth = document.querySelector('#progress-bar').dataset.width;
-            console.log("🚀 ~ file: film.html:53 ~ ariaValuenow:", dataWidth)
             // Utiliser la variable dans votre code JavaScript
             window.onload = function(){
                 document.querySelector("#progress-bar").style.width = dataWidth + "%";
-                console.log(document.querySelector('#progress-bar').style.width + "%")
             };
         </script>
 
@@ -84,14 +82,19 @@
     <hr width="100%">
     <div>
         <h2>Ajouter un commentaire</h2>
-        <form class="">
+        <form method="POST" action="/film/{{film._id}}" id="form-ajout-commentaire" novalidate>
             <label for="commentaire">Votre commentaire</label>
+            {% if not utilisateur %}
+            <p class="text-center text-danger border border-danger mb-2">Vous devez être connecté pour pouvoir commenter</p>
+            {% endif %}
             <div class="d-flex">
-                <textarea class="form-control me-2" id="commentaire" rows="3" ></textarea>
-                <button type="submit" class="btn btn-primary"><i class="bi bi-send-plus fs-1"></i></button>
-
+                <textarea class="form-control me-2" id="commentaire" name="commentaire" rows="3"  {% if not utilisateur %}disabled{% endif %}></textarea>
+                <button type="submit" class="btn btn-primary" id="submit_commentaire" {% if not utilisateur %}disabled{% endif %}><i class="bi bi-send-plus fs-1"></i></button>
             </div>
         </form>
+        {% if message_erreur %}
+        <p class="text-center text-black border border-danger mb-2 bg-danger mt-2">{{message_erreur}}</p>
+        {% endif %}
     </div>
     
 

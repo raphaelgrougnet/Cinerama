@@ -11068,7 +11068,7 @@ body .logo.fade {
 .dropdown-profile-container .dropdown-profile {
   position: absolute;
   text-align: start;
-  right: 105%;
+  right: 100%;
   top: 0;
   z-index: 1000;
   display: none;
