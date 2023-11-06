@@ -38,10 +38,12 @@ def film(id):
         id_user = ObjectId(utilisateur["_id"])
         id_film = ObjectId(id)
         date_post = datetime.now()
-        mongo.db.commentaires.insert_one({"description": commentaire,
+        commentaire_inséré = mongo.db.commentaires.insert_one({"description": commentaire,
                                         "id_user": id_user,
                                         "id_film": id_film,
                                         "date_post": date_post})
+        mongo.db.films.update_one({"_id": ObjectId(id)}, {"$push": {"Commentaires": ObjectId(commentaire_inséré.inserted_id)}})
+        mongo.db.users.update_one({"_id": ObjectId(id_user)}, {"$push": {"commentaires": ObjectId(commentaire_inséré.inserted_id)}})
         return redirect('/film/' + id)
 
 
