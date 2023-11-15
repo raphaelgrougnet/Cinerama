@@ -100,7 +100,7 @@ body{
     .dropdown-profile{
         position: absolute;
         text-align: start;
-        right: 105%;
+        right: 100%;
         top: 0;
         z-index: 1000;
         display: none;
@@ -521,6 +521,39 @@ body{
 opacity: 1;
 }
 
+.div-metascore-details-film{
+    *{
+        margin: 0;
+    }
+    position: relative;
+    width: 75px;
+    height: 75px;
+    // background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    p{
+        color: black;
+    }
+    img{
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 25px;
+        height: 25px;
+
+    }
+}
+
+#poster-details-film{
+    height: fit-content;
+    width: 30%;
+    @extend .mb-3;
+}
+
 @media (max-width: 992px) {
 
     .is-logout-active{
@@ -623,6 +656,13 @@ opacity: 1;
     #btn-personnalise{
         display: flex;
         margin-bottom: 20px;
+    }
+
+    #poster-details-film{
+        height: 400px !important;
+        width: 100% !important;
+        object-fit: contain !important;
+
     }
 }
 
