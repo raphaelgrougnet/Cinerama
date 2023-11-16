@@ -41,7 +41,7 @@ def profil():
     
     return render_template('profil/profil.html', utilisateur=utilisateur, commentaires=commentaires)
 
-@bp_profil.route('/favoris')
+@bp_profil.route('/favoris', methods=['GET', 'POST'])
 def favoris():
     """
     Affiche les favoris de l'utilisateur
@@ -50,18 +50,21 @@ def favoris():
 
     if utilisateur is None:
         abort(404)
-    
+
+    if request.method == 'POST':
+        id = request.form.get("id_film")
+        mongo.db.users.update_one({"_id": ObjectId(utilisateur['_id'])}, {"$pull": {"favoris": ObjectId(id)}})
+        redirect('/profil/favoris', 303)
+
     user = mongo.db.users.find_one({"_id": ObjectId(utilisateur['_id'])})
     id_film = user['favoris']
     films = []
     for id in id_film:
         films.append(mongo.db.films.find_one({"_id": ObjectId(id)}))
        
-   
-
     return render_template('profil/profil_favoris.html', utilisateur=utilisateur, films=films)
 
-@bp_profil.route('/visionne')
+@bp_profil.route('/visionne', methods=['GET', 'POST'])
 def visionne():
     """
     Affiche les vidéos visionnées de l'utilisateur
@@ -70,6 +73,11 @@ def visionne():
     
     if utilisateur is None:
         abort(404)
+
+    if request.method == 'POST':
+        id = request.form.get("id_film")
+        mongo.db.users.update_one({"_id": ObjectId(utilisateur['_id'])}, {"$pull": {"visionnes": {"id_film": ObjectId(id)}}})
+        redirect('/profil/visionne', 303)
 
     user = mongo.db.users.find_one({"_id": ObjectId(utilisateur['_id'])})
     visionnes = user['visionnes']
