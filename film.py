@@ -9,14 +9,25 @@ def film(id):
     """
     Affiche le profil de l'utilisateur
     """
-    
+    is_favoris = False
+
     utilisateur = session.get("utilisateur")
 
     film = mongo.db.films.find_one({"_id": ObjectId(id)})
 
+    user = mongo.db.users.find_one(
+        {
+            "_id": ObjectId(utilisateur['_id'])
+        }
+    )
+
     if film is None:
         abort(404)
 
+    for id_film in user['favoris']:
+        if str(id_film) == str(id):
+            is_favoris = True
+            break
     commentaires = list(mongo.db.commentaires.find({"id_film": ObjectId(id)}).sort("date_post", -1))
     for commentaire in commentaires:
         commentaire["date_post"] = commentaire["date_post"].strftime("%d/%m/%Y")
@@ -26,31 +37,65 @@ def film(id):
     film["Metascore"] = int(film["Metascore"])
 
     if request.method == 'POST':
-        if utilisateur is None:
-            return redirect('/login')
-        commentaire = request.form.get("commentaire").strip()
-        if commentaire == "":
-            return render_template('film/film.html',
-                               utilisateur=utilisateur,
-                               film=film,
-                               commentaires=commentaires,
-                               message_erreur="Vous devez saisir un commentaire de plus de 5 caractères.")
-        id_user = ObjectId(utilisateur["_id"])
-        id_film = ObjectId(id)
-        date_post = datetime.now()
-        commentaire_inséré = mongo.db.commentaires.insert_one({"description": commentaire,
-                                        "id_user": id_user,
-                                        "id_film": id_film,
-                                        "date_post": date_post})
-        mongo.db.films.update_one({"_id": ObjectId(id)}, {"$push": {"Commentaires": ObjectId(commentaire_inséré.inserted_id)}})
-        mongo.db.users.update_one({"_id": ObjectId(id_user)}, {"$push": {"commentaires": ObjectId(commentaire_inséré.inserted_id)}})
-        return redirect('/film/' + id)
+        if "from2" in request.form:
+            if utilisateur is None:
+                return redirect('/login')
+            commentaire = request.form.get("commentaire").strip()
+            if commentaire == "":
+                return render_template('film/film.html',
+                                utilisateur=utilisateur,
+                                film=film,
+                                commentaires=commentaires,
+                                message_erreur="Vous devez saisir un commentaire de plus de 5 caractères.")
+            id_user = ObjectId(utilisateur["_id"])
+            id_film = ObjectId(id)
+            date_post = datetime.now()
+            commentaire_inséré = mongo.db.commentaires.insert_one({"description": commentaire,
+                                            "id_user": id_user,
+                                            "id_film": id_film,
+                                            "date_post": date_post})
+            mongo.db.films.update_one({"_id": ObjectId(id)}, {"$push": {"Commentaires": ObjectId(commentaire_inséré.inserted_id)}})
+            mongo.db.users.update_one({"_id": ObjectId(id_user)}, {"$push": {"commentaires": ObjectId(commentaire_inséré.inserted_id)}})
+            return redirect('/film/' + id)
+        elif "form1" in request.form:
+            utilisateur = session.get("utilisateur")
+            if utilisateur is None or user is None:
+                abort(401)
 
+            film = mongo.db.films.find_one({"_id": ObjectId(id)})
+
+            if(is_favoris):
+                mongo.db.users.update_one(
+                    {
+                        "_id": ObjectId(utilisateur['_id'])
+                    },
+                    {
+                        "$pull": {
+                            "favoris": ObjectId(id)
+                        }
+                    }
+                )
+                return redirect('/film/' + id)
+            else:
+                mongo.db.users.update_one(
+                    {
+                        "_id": ObjectId(utilisateur['_id'])
+                    },
+                    {
+                        "$push": {
+                            "favoris": ObjectId(id)
+                        }
+                    }
+                )
+                return redirect('/film/' + id)
+        else:
+            abort(404)
 
     return render_template('film/film.html', 
                         utilisateur=utilisateur, 
                         film=film,
-                        commentaires=commentaires)
+                        commentaires=commentaires,
+                        is_favoris=is_favoris)
 
 
 def ajout_commentaire(id):

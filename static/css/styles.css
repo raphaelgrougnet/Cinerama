@@ -11514,6 +11514,20 @@ body .logo.fade {
     animation: none !important;
   }
 }
+.icon-favoris {
+  color: black;
+}
+.icon-favoris:hover {
+  color: rgb(255, 0, 162);
+}
+
+.icon-en-favoris {
+  color: rgb(255, 0, 162);
+}
+.icon-en-favoris:hover {
+  color: black;
+}
+
 @media (max-width: 768px) {
   .logo-navbar {
     width: 25vw;
