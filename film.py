@@ -15,19 +15,26 @@ def film(id):
 
     film = mongo.db.films.find_one({"_id": ObjectId(id)})
 
-    user = mongo.db.users.find_one(
-        {
-            "_id": ObjectId(utilisateur['_id'])
-        }
-    )
+    if utilisateur is not None:
+        user = mongo.db.users.find_one(
+            {
+                "_id": ObjectId(utilisateur['_id'])
+            }
+        )
+    else:
+        user = None
 
     if film is None:
         abort(404)
 
-    for id_film in user['favoris']:
-        if str(id_film) == str(id):
-            is_favoris = True
-            break
+    if user is not None:
+        for id_film in user['favoris']:
+            if str(id_film) == str(id):
+                is_favoris = True
+                break
+    else:
+        is_favoris = False
+
     commentaires = list(mongo.db.commentaires.find({"id_film": ObjectId(id)}).sort("date_post", -1))
     for commentaire in commentaires:
         commentaire["date_post"] = commentaire["date_post"].strftime("%d/%m/%Y")
@@ -60,7 +67,7 @@ def film(id):
         elif "form1" in request.form:
             utilisateur = session.get("utilisateur")
             if utilisateur is None or user is None:
-                abort(401)
+                return redirect('/login')
 
             film = mongo.db.films.find_one({"_id": ObjectId(id)})
 
