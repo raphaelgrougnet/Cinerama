@@ -5,6 +5,7 @@ import dotenv
 from datetime import *
 from profil import bp_profil
 from film import bp_film
+from api import bp_api
 from bson.objectid import ObjectId
 from flask import Flask, render_template, session, request, redirect, url_for, make_response
 from flask_pymongo import PyMongo
@@ -16,6 +17,7 @@ if not os.getenv('CONNEXION_BD'):
 app = Flask(__name__)
 app.register_blueprint(bp_profil, url_prefix='/profil')
 app.register_blueprint(bp_film, url_prefix='/film')
+app.register_blueprint(bp_api, url_prefix='/api' )
 app.config['MONGO_URI'] = os.getenv('CONNEXION_BD')
 
 app.secret_key = os.getenv('SECRET_KEY')
