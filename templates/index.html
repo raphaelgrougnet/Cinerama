@@ -37,28 +37,30 @@
                 <button class="btn text-center me-lg-3 d-flex align-items-center justify-content-center text-white"><i class="bi bi-filter pe-1"></i>Trier</button>
                 <div class="sort-content">
                     <div>
-                        <input type="checkbox" name="chk1" id="chk1" class="form-check-input form-check-inline">
-                        <label for="chk1" class="form-check-label">Lorem</label>
+                        <input type="checkbox" name="chkName" id="chkName" class="form-check-input form-check-inline">
+                        <label for="chkName" class="form-check-label">Ordre alphanumérique</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="chk1" id="chk1" class="form-check-input  form-check-inline">
-                        <label for="chk1" class="form-check-label">Lorem</label>
+                        <input type="checkbox" name="chkDate" id="chkDate" class="form-check-input  form-check-inline">
+                        <label for="chkDate" class="form-check-label">Année de sortie</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="chk1" id="chk1" class="form-check-input  form-check-inline">
-                        <label for="chk1" class="form-check-label">Lorem</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="chk1" id="chk1" class="form-check-input  form-check-inline">
-                        <label for="chk1" class="form-check-label">Lorem</label>
+                        <input type="checkbox" name="chkNote" id="chkNote" class="form-check-input  form-check-inline">
+                        <label for="chkNote" class="form-check-label">Note</label>
                     </div>
                     
                     
                 </div>
             </div>
-            
-            <input type="text" class="form-control" placeholder="Rechercher un film...">
-            <button type="submit" class="btn ms-lg-3 d-flex align-items-center justify-content-center text-white"><i class="bi bi-arrow-return-right pe-1"></i>Rechercher</button>
+            <div class="w-100 searchbar-suggestions-container">
+                <input type="text" class="form-control" placeholder="Rechercher un film..." id="search">
+                <div class="searchbar-suggestions cacher" id="divSuggestions">
+                    <ul id="listeSuggestions">
+                        <li class="d-flex justify-content-center"><div class="race-by"></div></li>
+                    </ul>
+                </div>
+            </div>
+            <button type="submit" id="btnSearch" class="btn ms-lg-3 d-flex align-items-center justify-content-center text-white"><i class="bi bi-arrow-return-right pe-1"></i>Rechercher</button>
         </div>
     </section>
     <section class="pt-5">

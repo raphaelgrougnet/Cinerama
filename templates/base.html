@@ -23,6 +23,7 @@
   <script src="/static/js/carrousel-scroll-arrow.js" defer></script>
   <script src="/static/js/intro.js" defer></script>
   <script src="/static/js/ajout_film.js" defer></script>
+  <script src="/static/js/accueil.js" defer></script>
   <title>Cinerama</title>
 </head>
 
@@ -47,9 +48,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link {% block films_active %}{% endblock %}" href="/films">Films</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {% block posts_active %}{% endblock %}" href="/posts">Posts</a>
             </li>
             {% if utilisateur %}
             <li class="nav-item is-logout-active">
