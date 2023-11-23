@@ -51,6 +51,13 @@ def mettre_en_favoris(id):
             }
         )
         return jsonify({"message": "Le film a été ajouté aux favoris."})
+    
+@bp_api.route('/recuperer-suggestions/<string:recherche>', methods=['GET'])
+def recuperer_suggestions(recherche):
+    suggestions = list(mongo.db.films.find({"Title": {"$regex": recherche, "$options": "i"}}).limit(5))
+    for suggestion in suggestions:
+        suggestion['_id'] = str(suggestion['_id'])
+    return jsonify(suggestions)
 
 
 

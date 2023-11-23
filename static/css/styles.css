@@ -11127,18 +11127,74 @@ body .logo.fade {
   display: inline-block;
 }
 .sort-dropdown:hover .sort-content {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .sort-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
+  min-width: 255px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
+}
+.sort-content div {
+  width: 100%;
+  text-align: start;
+}
+
+.cacher {
+  display: none;
+}
+
+.searchbar-suggestions-container {
+  position: relative;
+  z-index: 1000;
+}
+.searchbar-suggestions-container .searchbar-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+}
+.searchbar-suggestions-container .searchbar-suggestions ul {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  z-index: 1000;
+  top: 100%;
+  left: 0;
+  background: #161616;
+  width: 100%;
+  max-height: 400px;
+  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.searchbar-suggestions-container .searchbar-suggestions ul li {
+  list-style: none;
+  padding: 1rem;
+  border-top: 1px solid #eee;
+  text-align: center;
+  color: white;
+}
+.searchbar-suggestions-container .searchbar-suggestions ul li:hover {
+  background: #ffffff;
+  color: #212121;
+}
+.searchbar-suggestions-container .searchbar-suggestions ul li:hover a {
+  color: #212121;
+}
+.searchbar-suggestions-container .searchbar-suggestions ul li:hover .race-by {
+  --uib-color: black ;
+}
+.searchbar-suggestions-container .searchbar-suggestions ul li a {
+  color: white;
 }
 
 .scroller-container {
@@ -11452,6 +11508,51 @@ body .logo.fade {
   width: 30%;
 }
 
+.race-by {
+  --uib-size: 80px;
+  --uib-speed: 1.4s;
+  --uib-color: white;
+  --uib-line-weight: 5px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--uib-line-weight);
+  width: var(--uib-size);
+  border-radius: calc(var(--uib-line-weight) / 2);
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.race-by::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--uib-color);
+  opacity: 0.1;
+}
+
+.race-by::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  border-radius: calc(var(--uib-line-weight) / 2);
+  animation: raceBy var(--uib-speed) ease-in-out infinite;
+  transform: translateX(-100%);
+  background-color: var(--uib-color);
+}
+
+@keyframes raceBy {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
 @media (max-width: 992px) {
   .is-logout-active {
     display: block;
