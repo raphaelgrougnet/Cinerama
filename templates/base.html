@@ -70,9 +70,15 @@
           </div>
 
           {% else %}
-          <a href="/login"
-            class="btn btn-primary text-center d-flex align-items-center justify-content-center text-white">Se connecter
+          <div class=" d-lg-flex gap-1">
+            <a href="/login"
+            class="btn btn-primary text-center d-flex align-items-center justify-content-center text-white mb-1 mb-lg-0">Se connecter
             <i class="bi bi-box-arrow-in-right fs-3 ms-2"></i></a>
+            <a href="/register"
+            class="btn btn-primary text-center d-flex align-items-center justify-content-center text-white">S'inscrire
+            <i class="bi bi-person-plus fs-3 ms-2"></i></a>
+          </div>
+          
           {% endif %}
         </div>
       </div>
