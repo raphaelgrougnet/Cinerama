@@ -6,27 +6,18 @@
             {% if utilisateur.is_premium %}
             <div class="tooltip-premium">
                 <i class="bi bi-star-fill premium-color"></i>
-                <span class="tooltiptext-premium">Utilisateur premium</span>
+                <span class="tooltiptext-premium">Administrateur</span>
             </div>
             {% endif %} 
             {{utilisateur.first}} {{utilisateur.last}}
         </h1>
 </section>
 <section class="mt-3">
-    {% if utilisateur.is_admin %}
-        <div class="info-user">
-            <p class="text-info">Vous êtes admin</p>
-            <a href="#" id="btn-personnalise" class="btn btn-primary">Personnaliser votre profil</a>
-        </div>
-        <div>
-            <p>Votre karma : {{utilisateur.karma}}</p>
-        </div>
-    {% else %}
-        <div class="info-user">
-            <p>Votre karma : {{utilisateur.karma}}</p>
-            <a href="#" id="btn-personnalise" class="btn btn-primary">Personnaliser votre profil</a>
-        </div>
-    {% endif %}
+   
+    <div class="info-user mb-4">
+        <!-- <p>Votre karma : {{utilisateur.karma}}</p> -->
+        <a href="#" id="btn-personnalise" class="btn btn-primary disabled" disabled>Personnaliser votre profil</a>
+    </div>
     <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/profil/">Commentaires</a>
