@@ -1,7 +1,8 @@
-from flask import redirect, render_template, request, session, Blueprint, abort, current_app as app
+from flask import redirect, render_template, jsonify, request, session, Blueprint, abort, current_app as app
 from bd import mongo
 from datetime import datetime
 from bson.objectid import ObjectId
+
 bp_film = Blueprint('film', __name__)
 
 @bp_film.route('/<id>', methods=['GET', 'POST'])
@@ -39,6 +40,7 @@ def film(id):
     for commentaire in commentaires:
         commentaire["date_post"] = commentaire["date_post"].strftime("%d/%m/%Y")
         commentaire["utilisateur"] = mongo.db.users.find_one({"_id": ObjectId(commentaire["id_user"])})
+        commentaire["utilisateur"]["_id"] = str(commentaire["utilisateur"]["_id"])
 
     film["Released"] = film["Released"].strftime("%d/%m/%Y")
     film["Metascore"] = int(film["Metascore"])
@@ -119,4 +121,45 @@ def ajout_commentaire(id):
     mongo.db.commentaires.insert_one({"description": commentaire,
                                       "id_user": id_user,
                                       "id_film": id_film,
-                                      "date_post": date_post})
+                                      "date_post": date_post,
+                                      "isDeleted" : False})
+    
+@bp_film.route('/<string:idFilm>/commentaire/<string:idCommentaire>/supprimer', methods=['POST'])
+def supprimer_commentaire(idFilm, idCommentaire):
+    """
+    Supprime un commentaire
+    """
+    utilisateur = session.get("utilisateur")
+    if utilisateur is None:
+        abort(401)
+    commentaire = mongo.db.commentaires.find_one({"_id": ObjectId(idCommentaire)})
+    if commentaire is None:
+        abort(404)
+    
+    if commentaire["id_user"] == ObjectId(utilisateur["_id"]) or utilisateur["is_admin"]:
+        mongo.db.commentaires.update_one({"_id": ObjectId(idCommentaire)}, {"$set": {"isDeleted": True}})
+        mongo.db.films.update_one({"_id": ObjectId(idFilm)}, {"$pull": {"Commentaires": ObjectId(idCommentaire)}})
+        mongo.db.users.update_one({"_id": ObjectId(utilisateur["_id"])}, {"$pull": {"commentaires": ObjectId(idCommentaire)}})
+        return redirect('/film/' + idFilm)
+
+    abort(401)
+    
+@bp_film.route('/<string:idFilm>/commentaire/<string:idCommentaire>/reactiver', methods=['POST'])
+def reactiver_commentaire(idFilm, idCommentaire):
+    """
+    Supprime un commentaire
+    """
+    utilisateur = session.get("utilisateur")
+    if utilisateur is None:
+        abort(401)
+    commentaire = mongo.db.commentaires.find_one({"_id": ObjectId(idCommentaire)})
+    if commentaire is None:
+        abort(404)
+    
+    if utilisateur["is_admin"]:
+        mongo.db.commentaires.update_one({"_id": ObjectId(idCommentaire)}, {"$set": {"isDeleted": False}})
+        mongo.db.films.update_one({"_id": ObjectId(idFilm)}, {"$pull": {"Commentaires": ObjectId(idCommentaire)}})
+        mongo.db.users.update_one({"_id": ObjectId(utilisateur["_id"])}, {"$pull": {"commentaires": ObjectId(idCommentaire)}})
+        return redirect('/film/' + idFilm)
+
+    abort(401)
