@@ -138,7 +138,6 @@ def supprimer_commentaire(idFilm, idCommentaire):
     
     if commentaire["id_user"] == ObjectId(utilisateur["_id"]) or utilisateur["is_admin"]:
         mongo.db.commentaires.update_one({"_id": ObjectId(idCommentaire)}, {"$set": {"isDeleted": True}})
-        mongo.db.films.update_one({"_id": ObjectId(idFilm)}, {"$pull": {"Commentaires": ObjectId(idCommentaire)}})
         mongo.db.users.update_one({"_id": ObjectId(utilisateur["_id"])}, {"$pull": {"commentaires": ObjectId(idCommentaire)}})
         return redirect('/film/' + idFilm)
 
@@ -158,7 +157,6 @@ def reactiver_commentaire(idFilm, idCommentaire):
     
     if utilisateur["is_admin"]:
         mongo.db.commentaires.update_one({"_id": ObjectId(idCommentaire)}, {"$set": {"isDeleted": False}})
-        mongo.db.films.update_one({"_id": ObjectId(idFilm)}, {"$pull": {"Commentaires": ObjectId(idCommentaire)}})
         mongo.db.users.update_one({"_id": ObjectId(utilisateur["_id"])}, {"$pull": {"commentaires": ObjectId(idCommentaire)}})
         return redirect('/film/' + idFilm)
 
