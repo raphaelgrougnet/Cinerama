@@ -11,7 +11,7 @@ def film(id):
     Affiche le profil de l'utilisateur
     """
     is_favoris = False
-
+    is_visionne = False
     utilisateur = session.get("utilisateur")
 
     film = mongo.db.films.find_one({"_id": ObjectId(id)})
@@ -35,6 +35,15 @@ def film(id):
                 break
     else:
         is_favoris = False
+
+    is_visionne = False
+    if user is not None:
+        for film_visionne in user['visionnes']:
+            if str(film_visionne['id_film']) == str(id):
+                is_visionne = True
+                break
+    else:
+        is_visionne = False
 
     commentaires = list(mongo.db.commentaires.find({"id_film": ObjectId(id)}).sort("date_post", -1))
     for commentaire in commentaires:
@@ -71,8 +80,6 @@ def film(id):
             if utilisateur is None or user is None:
                 return redirect('/login')
 
-            film = mongo.db.films.find_one({"_id": ObjectId(id)})
-
             if(is_favoris):
                 mongo.db.users.update_one(
                     {
@@ -97,6 +104,42 @@ def film(id):
                     }
                 )
                 return redirect('/film/' + id)
+        elif "form3" in request.form:
+            utilisateur = session.get("utilisateur")
+            if utilisateur is None or user is None:
+                return redirect('/login')
+
+            if(is_visionne):
+                mongo.db.users.update_one(
+                    {
+                        "_id": ObjectId(utilisateur['_id'])
+                    },
+                    {
+                        "$pull": {
+                            "visionnes": {
+                                "id_film": ObjectId(id)
+                            }
+                        }
+                    },                
+                )       
+                return redirect('/film/' + id)
+            else:
+                mongo.db.users.update_one(
+                    {
+                        "_id": ObjectId(utilisateur['_id'])
+                    },
+                    {
+                        "$push": {
+                            "visionnes": {
+                                "id_film": ObjectId(id),
+                                "date_visionne": datetime.now()
+                            }
+                        }
+                    }
+                )
+                return redirect('/film/' + id)
+
+            
         else:
             abort(404)
 
@@ -104,7 +147,8 @@ def film(id):
                         utilisateur=utilisateur, 
                         film=film,
                         commentaires=commentaires,
-                        is_favoris=is_favoris)
+                        is_favoris=is_favoris,
+                        is_visionne=is_visionne)
 
 
 def ajout_commentaire(id):
