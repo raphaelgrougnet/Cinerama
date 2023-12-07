@@ -7,18 +7,31 @@
     <div class="d-flex flex-column flex-grow-1">
         <div class="d-flex justify-content-between">
             <h2 class="fw-bold m-0">{{ film.Title }}</h2>
-            <!--<a class="btn btn-secondary p-0" href="/api/mettre-en-favoris/{{film._id}}"><i class="bi bi-heart-fill display-4 icon-favoris"></i></a>-->
-            {% if is_favoris %}
-            <form action="/film/{{film._id}}" method="POST">
-                <input type="hidden" name="id_film" value="{{film._id}}">
-                <button data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Enlever des favoris" type="submit" name="form1" class="btn btn-secondary p-0"><i class="bi bi-heart-fill display-4 icon-en-favoris"></i></button>
-            </form>
-            {% else %}
-            <form action="/film/{{film._id}}" method="POST">
-                <input type="hidden" name="id_film" value="{{film._id}}">
-                <button data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Ajouter aux favoris" type="submit" name="form1" class="btn btn-secondary p-0"><i class="bi bi-heart-fill display-4 icon-favoris"></i></button>
-            </form>
-            {% endif %}
+            <div class="d-flex">
+                {% if is_visionne %}
+                    <form action="/film/{{film._id}}" method="POST">
+                        <input type="hidden" name="id_film" value="{{film._id}}">
+                        <button id="btnVisionne" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Ajouter aux visionnés" type="submit" name="form3" class="btn btn-secondary p-0"><i class="bi bi-eye-fill display-4 me-4"></i></button>
+                    </form>
+                {% else %}
+                    <form action="/film/{{film._id}}" method="POST">
+                        <input type="hidden" name="id_film" value="{{film._id}}">
+                        <button id="btnVisionne" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Retirer des visionnés" type="submit" name="form3" class="btn btn-secondary p-0"><i class="bi bi-eye-slash-fill display-4 me-4"></i></button>
+                    </form>
+                {% endif %}
+                {% if is_favoris %}
+                <form action="/film/{{film._id}}" method="POST">
+                    <input type="hidden" name="id_film" value="{{film._id}}">
+                    <button data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Retirer des favoris" type="submit" name="form1" class="btn btn-secondary p-0"><i class="bi bi-heart-fill display-4 icon-en-favoris"></i></button>
+                </form>
+                {% else %}
+                <form action="/film/{{film._id}}" method="POST">
+                    <input type="hidden" name="id_film" value="{{film._id}}">
+                    <button data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-custom-class="custom-tooltip" data-bs-title="Ajouter aux favoris" type="submit" name="form1" class="btn btn-secondary p-0"><i class="bi bi-heart-fill display-4 icon-favoris"></i></button>
+                </form>
+                {% endif %}
+            </div>
+            
         </div>
         <p><span class="fw-bold">Date de sortie :</span> {{film.Released}}</p>
         <hr width="100%">
