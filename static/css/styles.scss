@@ -779,6 +779,35 @@ opacity: 1;
     }
 }
 
+.like-dislike-buttons {
+    display: flex;
+    
+}
+
+.btn-like{
+    background-color: white;
+    color: black;
+    padding: 16px 5px 16px 0px;
+    
+    &:hover{ 
+        color: black;
+    }
+}
+
+.like-group{
+    margin-right: 10px;
+}
+
+
+
+.btn-dislike{
+    background-color: white;
+    color: black;
+    padding: 16px 5px 16px 0px;
+    &:hover{ 
+        color: black;
+    }
+}
 
 
 @media (max-width: 768px) {
