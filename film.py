@@ -50,6 +50,20 @@ def film(id):
         commentaire["date_post"] = commentaire["date_post"].strftime("%d/%m/%Y")
         commentaire["utilisateur"] = mongo.db.users.find_one({"_id": ObjectId(commentaire["id_user"])})
         commentaire["utilisateur"]["_id"] = str(commentaire["utilisateur"]["_id"])
+        if commentaire['user_liked']:
+            for like in commentaire['user_liked']:
+                if str(like['id_user']) == str(utilisateur['_id']):
+                    commentaire['is_critique'] = True
+                    if like['is_like']:
+                        commentaire['is_like'] = True
+                    else:
+                        commentaire['is_like'] = False
+                else:
+                    commentaire['is_critique'] = False
+                    commentaire['is_like'] = None
+                    
+        
+
 
     film["Released"] = film["Released"].strftime("%d/%m/%Y")
     film["Metascore"] = int(film["Metascore"])
@@ -138,8 +152,136 @@ def film(id):
                     }
                 )
                 return redirect('/film/' + id)
-
+        elif "form4" in request.form:
+            utilisateur = session.get("utilisateur")
+            if utilisateur is None or user is None:
+                return redirect('/login')
             
+            id_com = request.form.get("id_commentaire")
+
+            for com in commentaires:
+                if str(com['_id']) == str(id_com):
+                    lecom = com
+                    break
+            if lecom['user_liked']:
+                if lecom['is_like']:
+                    mongo.db.commentaires.update_one(
+                        {
+                            "_id": ObjectId(id_com)
+                        },
+                        {
+                            "$inc": {
+                                "like_up": -1
+                            },
+                            "$pull": {
+                                "user_liked": {
+                                    "id_user": ObjectId(utilisateur['_id'])
+                                }
+                            }
+                        }
+                    )
+                    return redirect('/film/' + id)
+                else:
+                    mongo.db.commentaires.update_one(
+                        {
+                            "_id": ObjectId(id_com),
+                            "user_liked.id_user": ObjectId(utilisateur['_id'])
+                        },
+                        {
+                            "$set": {
+                                "user_liked.$.is_like": True
+                            },
+                            "$inc": {
+                                "like_up": 1,
+                                "like_down": -1
+                            }  
+                        }
+                    )
+
+                    return redirect('/film/' + id)
+            else:
+                mongo.db.commentaires.update_one(
+                    {
+                        "_id": ObjectId(id_com)
+                    },
+                    {
+                        "$inc": {
+                            "like_up": 1
+                        },
+                        "$push": {
+                            "user_liked": {
+                                "id_user": ObjectId(utilisateur['_id']),
+                                "is_like": True
+                            }
+                        }
+                    }
+                )
+                return redirect('/film/' + id)
+        elif "form5" in request.form:
+            utilisateur = session.get("utilisateur")
+            if utilisateur is None or user is None:
+                return redirect('/login')
+            
+            id_com = request.form.get("id_commentaire")
+            for com in commentaires:
+                if str(com['_id']) == str(id_com):
+                    lecom = com
+                    break
+
+            if lecom['user_liked']:
+                if lecom['is_like'] == False:
+                    mongo.db.commentaires.update_one(
+                        {
+                            "_id": ObjectId(id_com)
+                        },
+                        {
+                            "$inc": {
+                                "like_down": -1
+                            },
+                            "$pull": {
+                                "user_liked": {
+                                    "id_user": ObjectId(utilisateur['_id'])
+                                }
+                            }
+                        }
+                    )
+                    return redirect('/film/' + id)
+                else:
+                    mongo.db.commentaires.update_one(
+                        {
+                            "_id": ObjectId(id_com),
+                            "user_liked.id_user": ObjectId(utilisateur['_id'])
+                        },
+                        {
+                            "$inc": {
+                                "like_down": 1,
+                                "like_up": -1
+                            },
+                            "$set": {
+                                "user_liked.$.is_like": False
+                            }
+                        }
+                    )
+
+                    return redirect('/film/' + id)
+            else:
+                mongo.db.commentaires.update_one(
+                    {
+                        "_id": ObjectId(id_com)
+                    },
+                    {
+                        "$inc": {
+                                "like_down": 1,
+                            },
+                        "$push": {
+                            "user_liked": {
+                                "id_user": ObjectId(utilisateur['_id']),
+                                "is_like": False
+                            }
+                        }
+                    }
+                )
+                return redirect('/film/' + id)
         else:
             abort(404)
 

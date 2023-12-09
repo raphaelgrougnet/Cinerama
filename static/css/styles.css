@@ -11628,6 +11628,32 @@ body .logo.fade {
   color: black;
 }
 
+.like-dislike-buttons {
+  display: flex;
+}
+
+.btn-like {
+  background-color: white;
+  color: black;
+  padding: 16px 5px 16px 0px;
+}
+.btn-like:hover {
+  color: black;
+}
+
+.like-group {
+  margin-right: 10px;
+}
+
+.btn-dislike {
+  background-color: white;
+  color: black;
+  padding: 16px 5px 16px 0px;
+}
+.btn-dislike:hover {
+  color: black;
+}
+
 @media (max-width: 768px) {
   .logo-navbar {
     width: 25vw;
