@@ -50,6 +50,11 @@
             <li class="nav-item">
               <a class="nav-link {% block films_active %}{% endblock %}" href="/films">Films</a>
             </li>
+            {% if utilisateur.is_admin %}
+              <li class="nav-item">
+                <a class="nav-link" href="/film/ajout-film">Ajouter un Film</a>
+              </li>
+            {% endif %}
             {% if utilisateur %}
             <li class="nav-item is-logout-active">
               <a class="nav-link" href="/logout">Déconnexion</a>
