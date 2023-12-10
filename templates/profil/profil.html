@@ -37,39 +37,41 @@
     <div class="container">
         <div class="row g-3">
             {% for c in commentaires %}
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="comment-card">
-                        <div class="comment-card__avatar">
-                            <img class="comment-card__avatar__img" src="{{ utilisateur.pfp }}" alt="Profile">
-                            <span class="comment-card__content__metadata__nom ms-2 me-auto">
-                                <span class="comment-card__content__metadata__name">{{utilisateur.first}} {{utilisateur.last}}</span> <span class="comment-card__content__metadata__username">@{{utilisateur.username}}</span>
-                            </span>
-                        </div>
-                        <div class="comment-card__content">
-                            <p class="comment-card__content__description">
-                                {{c.description}}
-                            </p>
-                            <div class="mini-description">
-                                <p class="comment-card__content__metadata">
-                                    <span class="comment-card__content__metadata__film-title">Film : {{c.nom_film}}</span>
+                {% if not c.isDeleted %}
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="comment-card">
+                            <div class="comment-card__avatar">
+                                <img class="comment-card__avatar__img" src="{{ utilisateur.pfp }}" alt="Profile">
+                                <span class="comment-card__content__metadata__nom ms-2 me-auto">
+                                    <span class="comment-card__content__metadata__name">{{utilisateur.first}} {{utilisateur.last}}</span> <span class="comment-card__content__metadata__username">@{{utilisateur.username}}</span>
+                                </span>
+                            </div>
+                            <div class="comment-card__content">
+                                <p class="comment-card__content__description">
+                                    {{c.description}}
                                 </p>
-                                <p class="comment-card__content__metadata">
-                                    <span class="comment-card__content__metadata__comment-date">Posté le {{c.date_post}}</span>
-                                </p>
-                            </div>   
-                            <div class="d-flex">
-                                <div class="fs-4 d-flex align-items-baseline like-group text-black">
-                                    <p class="me-1"><i class="fs-4 bi bi-hand-thumbs-up-fill"></i></p>
-                                    <p class="fw-semibold">{{c.like_up}}</p>
-                                </div>
-                                <div class="fs-4 d-flex align-items-baseline text-black">
-                                    <p class="me-1"><i class="fs-4 bi bi-hand-thumbs-down-fill"></i></p>
-                                    <p class="fw-semibol">{{c.like_down}}</p>
-                                </div>
-                            </div>                     
-                        </div>
-                    </div> 
-                </div>
+                                <div class="mini-description">
+                                    <p class="comment-card__content__metadata">
+                                        <span class="comment-card__content__metadata__film-title">Film : {{c.nom_film}}</span>
+                                    </p>
+                                    <p class="comment-card__content__metadata">
+                                        <span class="comment-card__content__metadata__comment-date">Posté le {{c.date_post}}</span>
+                                    </p>
+                                </div>   
+                                <div class="d-flex">
+                                    <div class="fs-4 d-flex align-items-baseline like-group text-black">
+                                        <p class="me-1"><i class="fs-4 bi bi-hand-thumbs-up-fill"></i></p>
+                                        <p class="fw-semibold">{{c.like_up}}</p>
+                                    </div>
+                                    <div class="fs-4 d-flex align-items-baseline text-black">
+                                        <p class="me-1"><i class="fs-4 bi bi-hand-thumbs-down-fill"></i></p>
+                                        <p class="fw-semibol">{{c.like_down}}</p>
+                                    </div>
+                                </div>                     
+                            </div>
+                        </div> 
+                    </div>
+                {% endif %}
             {% endfor %}
         </div>
     </div>
