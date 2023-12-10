@@ -364,8 +364,8 @@ def ajout():
     form = FilmForm(request.form)
     if request.method == 'POST' and form.validate():
         titre = form.titre.data
-        annee = form.annee.data
         dateSortie = form.dateSortie.data
+        annee = dateSortie.year
         dateSortie = datetime(dateSortie.year, dateSortie.month, dateSortie.day)
         rated = form.rated.data
         duree = form.duree.data
@@ -386,7 +386,7 @@ def ajout():
         imdbID = form.imdbID.data
 
         result = mongo.db.films.insert_one({"Title": titre,
-                                   "Year": annee,
+                                   "Year": str(annee),
                                    "Released": dateSortie,
                                    "Rated": rated,
                                    "Runtime": duree,

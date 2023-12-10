@@ -14,14 +14,13 @@ message_erreur_required = 'Le champ est obligatoire'
 message_erreur_min = 'La valeur doit être supérieure ou égale à 1'
 message_erreur_min_zero = 'La valeur doit être supérieure ou égale à 0'
 message_erreur_min_annee = 'La valeur doit être supérieure ou égale à 1850'
+message_erreur_max = 'La valeur doit être supérieure ou égale à 0 et inférieure ou égale à 100'
 
 
 
 class FilmForm(Form):
     
     titre = StringField('Titre', [validators.Length(min=1, max=50, message=message_erreur_lenght), validators.DataRequired(message=message_erreur_required)])
-
-    annee = IntegerField('Année', [validators.DataRequired(message=message_erreur_required), NumberRange(min=1850, message=message_erreur_min_annee)])
 
     dateSortie = DateField('Date de sortie', [validators.DataRequired(message=message_erreur_required)])
     def validate_dateSortie(form, field):
@@ -54,21 +53,10 @@ class FilmForm(Form):
 
     awards = StringField('Prix Gagnés', [validators.DataRequired(message=message_erreur_required), validators.Length(min=3, max=100, message=message_erreur_lenght_100)])
 
-    metascore = IntegerField('Metascore', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, message=message_erreur_min_zero)])
+    metascore = IntegerField('Metascore', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, max=100 ,message=message_erreur_max)])
 
-    imdbRating = IntegerField('Note Imdb', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, message=message_erreur_min_zero)])
+    imdbRating = IntegerField('Note Imdb', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, max=100, message=message_erreur_max)])
 
     imdbVotes = IntegerField('Votes Imdb', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, message=message_erreur_min_zero)])
 
     imdbID = StringField('ID Imdb', [validators.DataRequired(message=message_erreur_required), validators.Length(min=1, max=50, message=message_erreur_lenght)])
-
-    def validate(self):
-        initial_validation = super(FilmForm, self).validate()
-        if not initial_validation:
-            return False
-
-        if self.annee.data != self.dateSortie.data.year:
-            self.annee.errors.append("L'année doit être égale à l'année de la date de sortie")
-            return False
-
-        return True

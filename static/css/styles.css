@@ -11658,6 +11658,10 @@ body .logo.fade {
   width: 20%;
 }
 
+.form-ajout-div-3 {
+  width: 30%;
+}
+
 @media (max-width: 768px) {
   .logo-navbar {
     width: 25vw;
