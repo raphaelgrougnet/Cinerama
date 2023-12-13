@@ -27,7 +27,7 @@ class FilmForm(Form):
         if field.data.year < 1850:
             raise ValidationError('La date ne peut pas être inférieure à l\'année 1850')
     
-    rated = SelectField('Noté', choices=[('G', 'G'), ('PG', 'PG'), ('PG-13', 'PG-13'), ('R', 'R'), ('NC-17', 'NC-17')], validators=[validators.DataRequired(message=message_erreur_required)])
+    #rated = SelectField('Noté', choices=[('G', 'G'), ('PG', 'PG'), ('PG-13', 'PG-13'), ('R', 'R'), ('NC-17', 'NC-17')], validators=[validators.DataRequired(message=message_erreur_required)])
 
     duree = IntegerField('Durée', [validators.DataRequired(message=message_erreur_required), NumberRange(min=1, message=message_erreur_min)])
 
@@ -45,18 +45,18 @@ class FilmForm(Form):
 
     pays = StringField('Pays', [validators.DataRequired(message=message_erreur_required), validators.Length(min=1, max=50, message=message_erreur_lenght)])
 
-    typeFilm = StringField('Type', [validators.DataRequired(message=message_erreur_required), validators.Length(min=1, max=50, message=message_erreur_lenght)])
+    #typeFilm = StringField('Type', [validators.DataRequired(message=message_erreur_required), validators.Length(min=1, max=50, message=message_erreur_lenght)])
 
-    reponse = SelectField('Réponse', choices=[('True', 'Oui'), ('False', 'Non')], validators=[validators.DataRequired(message=message_erreur_required)])
+    #reponse = SelectField('Réponse', choices=[('True', 'Oui'), ('False', 'Non')], validators=[validators.DataRequired(message=message_erreur_required)])
 
     image = StringField('Image', [validators.DataRequired(message=message_erreur_required), validators.Length(min=1, max=1000, message=message_erreur_lenght_1000), URL(message='L\'url doit être valide')])
 
-    awards = StringField('Prix Gagnés', [validators.DataRequired(message=message_erreur_required), validators.Length(min=3, max=100, message=message_erreur_lenght_100)])
+    #awards = StringField('Prix Gagnés', [validators.DataRequired(message=message_erreur_required), validators.Length(min=3, max=100, message=message_erreur_lenght_100)])
 
     metascore = IntegerField('Metascore', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, max=100 ,message=message_erreur_max)])
 
-    imdbRating = IntegerField('Note Imdb', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, max=100, message=message_erreur_max)])
+    #imdbRating = IntegerField('Note Imdb', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, max=100, message=message_erreur_max)])
 
-    imdbVotes = IntegerField('Votes Imdb', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, message=message_erreur_min_zero)])
+    #imdbVotes = IntegerField('Votes Imdb', [validators.DataRequired(message=message_erreur_required), NumberRange(min=0, message=message_erreur_min_zero)])
 
-    imdbID = StringField('ID Imdb', [validators.DataRequired(message=message_erreur_required), validators.Length(min=1, max=50, message=message_erreur_lenght)])
+    #imdbID = StringField('ID Imdb', [validators.DataRequired(message=message_erreur_required), validators.Length(min=1, max=50, message=message_erreur_lenght)])

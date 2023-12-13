@@ -11314,7 +11314,6 @@ body .logo.fade {
   position: absolute;
   top: 15px;
   right: 10px;
-  background: #00ce7a;
   color: #000000;
   border-radius: 5px;
   padding: 10px 10px;
@@ -11655,11 +11654,7 @@ body .logo.fade {
 }
 
 .form-ajout-div {
-  width: 20%;
-}
-
-.form-ajout-div-3 {
-  width: 30%;
+  width: 45%;
 }
 
 @media (max-width: 768px) {

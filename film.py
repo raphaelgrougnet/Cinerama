@@ -367,8 +367,8 @@ def ajout():
         dateSortie = form.dateSortie.data
         annee = dateSortie.year
         dateSortie = datetime(dateSortie.year, dateSortie.month, dateSortie.day)
-        rated = form.rated.data
-        duree = form.duree.data
+        #rated = form.rated.data
+        duree = str(form.duree.data) + " min"
         realisateur = form.realisateur.data
         writers = form.writers.data
         acteurs = form.acteurs.data
@@ -376,19 +376,18 @@ def ajout():
         synopsis = form.synopsis.data
         langue = form.langue.data
         pays = form.pays.data
-        typeFilm = form.typeFilm.data
-        reponse = form.reponse.data
+        #typeFilm = form.typeFilm.data
+        #reponse = form.reponse.data
         image = form.image.data
-        awards = form.awards.data
+        #awards = form.awards.data
         metascore = form.metascore.data
-        imdbRating = form.imdbRating.data
-        imdbVotes = form.imdbVotes.data
-        imdbID = form.imdbID.data
+        #imdbRating = form.imdbRating.data
+        #imdbVotes = form.imdbVotes.data
+        #imdbID = form.imdbID.data
 
         result = mongo.db.films.insert_one({"Title": titre,
                                    "Year": str(annee),
-                                   "Released": dateSortie,
-                                   "Rated": rated,
+                                   "Released": dateSortie,                      
                                    "Runtime": duree,
                                    "Director": realisateur,
                                    "Writer": writers,
@@ -396,15 +395,9 @@ def ajout():
                                    "Genre": genres,
                                    "Plot": synopsis,
                                    "Language": langue,
-                                   "Country": pays,
-                                   "Type": typeFilm,
-                                   "Response": reponse,
+                                   "Country": pays,                                                                
                                    "Poster": image,
-                                   "Awards": awards,
-                                   "Metascore": metascore,
-                                   "imdbRating": imdbRating,
-                                   "imdbVotes": imdbVotes,
-                                   "imdbID": imdbID})
+                                   "Metascore": metascore,})
         film_id = result.inserted_id
         
         return redirect('/film/' + str(film_id))
