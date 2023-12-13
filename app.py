@@ -102,7 +102,7 @@ def login():
         }
 
         for i in range(len(utilisateur_trouve["visionnes"])):
-            utilisateur_trouve["visionnes"][i] = str(ObjectId(utilisateur_trouve["visionnes"][i]))
+            utilisateur_trouve["visionnes"][i] = str(ObjectId(utilisateur_trouve["visionnes"][i]['id_film']))
 
         for i in range(len(utilisateur_trouve["favoris"])):
             utilisateur_trouve["favoris"][i] = str(ObjectId(utilisateur_trouve["favoris"][i]))

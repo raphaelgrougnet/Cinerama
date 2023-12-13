@@ -1,5 +1,6 @@
 from flask import redirect, render_template, jsonify, request, session, Blueprint, abort, current_app as app
 from bd import mongo
+from form import FilmForm
 from datetime import datetime
 from bson.objectid import ObjectId
 
@@ -50,7 +51,7 @@ def film(id):
         commentaire["date_post"] = commentaire["date_post"].strftime("%d/%m/%Y")
         commentaire["utilisateur"] = mongo.db.users.find_one({"_id": ObjectId(commentaire["id_user"])})
         commentaire["utilisateur"]["_id"] = str(commentaire["utilisateur"]["_id"])
-        if commentaire['user_liked']:
+        if 'user_liked' in commentaire and commentaire['user_liked']:
             for like in commentaire['user_liked']:
                 if str(like['id_user']) == str(utilisateur['_id']):
                     commentaire['is_critique'] = True
@@ -85,7 +86,11 @@ def film(id):
             commentaire_inséré = mongo.db.commentaires.insert_one({"description": commentaire,
                                             "id_user": id_user,
                                             "id_film": id_film,
-                                            "date_post": date_post})
+                                            "date_post": date_post,
+                                            "isDeleted": False,
+                                            "like_up": 0,
+                                            "like_down": 0,
+                                            "user_liked": []})
             mongo.db.films.update_one({"_id": ObjectId(id)}, {"$push": {"Commentaires": ObjectId(commentaire_inséré.inserted_id)}})
             mongo.db.users.update_one({"_id": ObjectId(id_user)}, {"$push": {"commentaires": ObjectId(commentaire_inséré.inserted_id)}})
             return redirect('/film/' + id)
@@ -347,3 +352,62 @@ def reactiver_commentaire(idFilm, idCommentaire):
         return redirect('/film/' + idFilm)
 
     abort(401)
+
+
+@bp_film.route('/ajout-film', methods=['GET', 'POST'])
+def ajout():
+    utilisateur = session.get("utilisateur")
+    if utilisateur is None:
+        return redirect('/login')
+    if not utilisateur["is_admin"]:
+        abort(401)
+    form = FilmForm(request.form)
+    if request.method == 'POST' and form.validate():
+        titre = form.titre.data
+        dateSortie = form.dateSortie.data
+        annee = dateSortie.year
+        dateSortie = datetime(dateSortie.year, dateSortie.month, dateSortie.day)
+        rated = form.rated.data
+        duree = form.duree.data
+        realisateur = form.realisateur.data
+        writers = form.writers.data
+        acteurs = form.acteurs.data
+        genres = form.genres.data
+        synopsis = form.synopsis.data
+        langue = form.langue.data
+        pays = form.pays.data
+        typeFilm = form.typeFilm.data
+        reponse = form.reponse.data
+        image = form.image.data
+        awards = form.awards.data
+        metascore = form.metascore.data
+        imdbRating = form.imdbRating.data
+        imdbVotes = form.imdbVotes.data
+        imdbID = form.imdbID.data
+
+        result = mongo.db.films.insert_one({"Title": titre,
+                                   "Year": str(annee),
+                                   "Released": dateSortie,
+                                   "Rated": rated,
+                                   "Runtime": duree,
+                                   "Director": realisateur,
+                                   "Writer": writers,
+                                   "Actors": acteurs,
+                                   "Genre": genres,
+                                   "Plot": synopsis,
+                                   "Language": langue,
+                                   "Country": pays,
+                                   "Type": typeFilm,
+                                   "Response": reponse,
+                                   "Poster": image,
+                                   "Awards": awards,
+                                   "Metascore": metascore,
+                                   "imdbRating": imdbRating,
+                                   "imdbVotes": imdbVotes,
+                                   "imdbID": imdbID})
+        film_id = result.inserted_id
+        
+        return redirect('/film/' + str(film_id))
+    
+    return render_template('film/ajout.html', form=form, utilisateur=utilisateur)
+
