@@ -34,5 +34,6 @@ def films():
         films = list(mongo.db.films.find(query).sort(sort))
     for film in films:
         film['_id'] = str(film['_id'])
+        film['Metascore'] = int(film['Metascore'])
     print
     return render_template('films/films.html', utilisateur=utilisateur, films=films)

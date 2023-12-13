@@ -41,6 +41,7 @@ def index():
         id = str(film["_id"])
         film["_id"] = id
         film["Released"] = date.strftime("%d-%m-%Y")
+        film["Metascore"] = int(film["Metascore"])
 
     for film in films_notes:
         date = film["Released"]
