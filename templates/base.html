@@ -91,41 +91,8 @@
     </nav>
   </header>
   <main class="container">{% block content %}{% endblock %}</main>
-  <footer class="mt-5 text-black  pt-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <h5>Navigation</h5>
-          <ul class="list-unstyled">
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/films">Films</a></li>
-            <li><a href="/posts">Posts</a></li>
-            {% if utilisateur %}
-            <li><a href="/logout">Déconnexion</a></li>
-            {% endif %}
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h5>Profil</h5>
-          <ul class="list-unstyled">
-            {% if utilisateur %}
-            <li><a href="/profil">Commentaires</a></li>
-            <li><a href="/profil/favoris">Favoris</a></li>
-            <li><a href="/profil/visionne">Visionnés</a></li>
-            {% else %}
-            <li><a href="/login">Se connecter</a></li>
-            {% endif %}
-          </ul>
-        </div>
-        <div class="col-md-3">
-          <h5>Autres</h5>
-          <ul class="list-unstyled">
-            <!-- Ajoutez d'autres liens ici si nécessaire -->
-          </ul>
-        </div>
-      </div>
-    </div>
-    <p class="m-0 p-5 fs-4 text-center">Copyright © Raphaël Grougnet et Julien Paquet-Beaudoin</p>
+  <footer class="mt-5 text-black">
+    <p class="m-0 p-3 text-center">Copyright © Raphaël Grougnet et Julien Paquet-Beaudoin</p>
   </footer>
 </body>
 
