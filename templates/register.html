@@ -5,28 +5,28 @@
         <h2 class="form-signin-heading text-center">Inscription</h2>
         <div class="mb-4">
             <label for="first_name" class="sr-only">Prénom <span style="color:red;">*</span></label>
-            <input type="text" id="first_name" name="first_name" class="form-control my-2 {{ classe_erreur.first_name }}" placeholder="Prénom" value="{% if classe_erreur.first_name == 'is-valid' %}{{value_champs.first_name}}{% endif %}" autofocus>
+            <input type="text" id="first_name" name="first_name" class="form-control my-2 {{ classe_erreur.first_name }}" placeholder="Prénom" value="{{value_champs.first_name}}" autofocus>
             <div class="invalid-feedback">
                 {{ contenu_erreur.first_name }}.
             </div>
         </div>
         <div class="mb-4">
             <label for="last_name" class="sr-only">Nom <span style="color:red;">*</span></label>
-            <input type="text" id="last_name" name="last_name" class="form-control my-2 {{ classe_erreur.last_name }}" placeholder="Nom" value="{% if classe_erreur.last_name == 'is-valid' %}{{value_champs.last_name}}{% endif %}">
+            <input type="text" id="last_name" name="last_name" class="form-control my-2 {{ classe_erreur.last_name }}" placeholder="Nom" value="{{value_champs.last_name}}">
             <div class="invalid-feedback">
                 {{ contenu_erreur.last_name }}.
             </div>
         </div>
         <div class="mb-4">
             <label for="username" class="sr-only">Nom d'utilisateur <span style="color:red;">*</span></label>
-            <input type="text" id="username" name="username" class="form-control my-2 {{ classe_erreur.username }}" placeholder="Nom d'utilisateur" value="{% if classe_erreur.username == 'is-valid' %}{{value_champs.username}}{% endif %}">
+            <input type="text" id="username" name="username" class="form-control my-2 {{ classe_erreur.username }}" placeholder="Nom d'utilisateur" value="{{value_champs.username}}">
             <div class="invalid-feedback">
                 {{ contenu_erreur.username }}.
             </div>
         </div>
         <div class="mb-4">
             <label for="email" class="sr-only">Email <span style="color:red;">*</span></label>
-            <input type="email" id="email" name="email" class="form-control my-2 {{ classe_erreur.email }}" placeholder="Email" value="{% if classe_erreur.email == 'is-valid' %}{{value_champs.email}}{% endif %}">
+            <input type="email" id="email" name="email" class="form-control my-2 {{ classe_erreur.email }}" placeholder="Email" value="{{value_champs.email}}">
             <div class="invalid-feedback">
                 {{ contenu_erreur.email }}.
             </div>
