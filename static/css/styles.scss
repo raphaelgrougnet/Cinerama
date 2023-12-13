@@ -102,7 +102,7 @@ body{
         text-align: start;
         right: 100%;
         top: 0;
-        z-index: 1000;
+        z-index: 5000;
         display: none;
         color: white;
         transition: opacity 0.5s;
@@ -190,7 +190,7 @@ body{
     min-width: 255px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
-    z-index: 2;
+    z-index: 8000;
     width: 100%;
     div{
         width: 100%;
