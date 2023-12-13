@@ -79,7 +79,8 @@ def login():
                                    classe_erreur_username=classe_erreur_username,
                                    classe_erreur_password=classe_erreur_password,
                                    class_erreur_login="visually-hidden",
-                                   value_username=username)
+                                   value_username=username,
+                                   utilisateur=None)
 
         passwordHashed = hacher_mdp(password)
         utilisateur_trouve = mongo.db.users.find_one(
