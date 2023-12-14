@@ -9,9 +9,13 @@ window.addEventListener("load", function() {
         if (iElement.classList.contains('bi-eye-fill')) {
             iElement.classList.remove('bi-eye-fill');
             iElement.classList.add('bi-eye-slash-fill');
+            iElement.classList.remove('text-info');
+
         } else if (iElement.classList.contains('bi-eye-slash-fill')) {
             iElement.classList.remove('bi-eye-slash-fill');
             iElement.classList.add('bi-eye-fill');
+            iElement.classList.add('text-info');
+
             
         }
     });
@@ -20,9 +24,12 @@ window.addEventListener("load", function() {
         if (iElement.classList.contains('bi-eye-fill')) {
             iElement.classList.remove('bi-eye-fill');
             iElement.classList.add('bi-eye-slash-fill');
+            iElement.classList.remove('text-info');
         } else if (iElement.classList.contains('bi-eye-slash-fill')) {
             iElement.classList.remove('bi-eye-slash-fill');
             iElement.classList.add('bi-eye-fill');
+            iElement.classList.add('text-info');
+
         }
     });
 });
