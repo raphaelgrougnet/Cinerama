@@ -165,6 +165,9 @@ def register():
         utilisateur_existant = mongo.db.users.find_one(
             {"username": username}, {"_id": 0})
         
+        email_existant = mongo.db.users.find_one(
+            {"email": email}, {"_id": 0})
+        
 
         if not first_name:
             classe_erreur["first_name"] = "is-invalid"
@@ -180,6 +183,9 @@ def register():
         elif not re.match(regex_email, email):
             classe_erreur["email"] = "is-invalid"
             contenu_erreur["email"] = "L'adresse courriel n'est pas valide"
+        elif email_existant:
+            classe_erreur["email"] = "is-invalid"
+            contenu_erreur["email"] = "L'adresse courriel est déjà utilisée"
 
         if not password1:
             classe_erreur["password1"] = "is-invalid"
