@@ -26,11 +26,7 @@ Bienvenue sur Cinerama, votre source ultime pour les critiques de films les plus
 
 ## Comment Contribuer
 
-Nous sommes toujours à la recherche de nouveaux contributeurs passionnés par le cinéma. Si vous aimez écrire des critiques de films approfondies et captivantes, rejoignez notre équipe. REndez-vous sur le site pour en savoir plus sur les opportunités de contribution.
-
-## Restons Connectés
-
-Ne manquez jamais une critique grâce à nos canaux de médias sociaux. Suivez-nous sur [Facebook](lien_vers_facebook), [Twitter](lien_vers_twitter) et [Instagram](lien_vers_instagram) pour les dernières mises à jour, les recommandations et les discussions en direct sur le cinéma.
+Nous sommes toujours à la recherche de nouveaux contributeurs passionnés par le cinéma. Si vous aimez écrire des critiques de films approfondies et captivantes, rejoignez notre équipe. Rendez-vous sur le site pour en savoir plus sur les opportunités de contribution.
 
 Rejoignez-nous dans l'aventure cinématographique passionnante sur Cinerama - où chaque film raconte une histoire et chaque histoire mérite une critique complète.
 
