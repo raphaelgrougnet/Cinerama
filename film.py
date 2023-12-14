@@ -380,7 +380,7 @@ def ajout():
         #reponse = form.reponse.data
         image = form.image.data
         #awards = form.awards.data
-        metascore = form.metascore.data
+        metascore = str(form.metascore.data)
         #imdbRating = form.imdbRating.data
         #imdbVotes = form.imdbVotes.data
         #imdbID = form.imdbID.data
