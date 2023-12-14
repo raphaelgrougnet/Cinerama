@@ -59,6 +59,7 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    regex_email = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
     if session.get("utilisateur"):
         return redirect(url_for('index'), 303)
     if request.method == 'POST':
@@ -84,8 +85,14 @@ def login():
                                    utilisateur=None)
 
         passwordHashed = hacher_mdp(password)
-        utilisateur_trouve = mongo.db.users.find_one(
-            {"username": username, "password": passwordHashed})
+        if re.match(regex_email, username):
+            utilisateur_trouve = mongo.db.users.find_one(
+                {"email": username, "password": passwordHashed})
+        else:
+            utilisateur_trouve = mongo.db.users.find_one(
+                {"username": username, "password": passwordHashed})
+        
+
         if not utilisateur_trouve:
             return render_template('login.html', utilisateur = None)
         user = {
