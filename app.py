@@ -34,8 +34,8 @@ def hacher_mdp(mdp_en_clair):
 
 @app.route('/')
 def index():
-    films = list(mongo.db.films.find().sort('Released', -1))
-    films_notes = list(mongo.db.films.find().sort('Metascore', -1))
+    films = list(mongo.db.films.find().sort('Released', -1).limit(15))
+    films_notes = list(mongo.db.films.find().sort('Metascore', -1).limit(15))
     for film in films:
         date = film["Released"]
         id = str(film["_id"])
@@ -48,6 +48,8 @@ def index():
         id = str(film["_id"])
         film["_id"] = id
         film["Released"] = date.strftime("%d-%m-%Y")
+        film["Metascore"] = int(film["Metascore"])
+
 
     
     resp = make_response(render_template('index.html', utilisateur=session.get("utilisateur"), films=films, films_notes=films_notes, introPlayed=request.cookies.get('introPlayed'), class_connexion_succes=request.cookies.get('newLoggin'), class_deconnexion_succes=request.cookies.get('newLoggout')))
@@ -266,3 +268,16 @@ def logout():
     resp = make_response(redirect(url_for('index'), 303))
     resp.set_cookie('newLoggout', 'show')
     return resp
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html', utilisateur=session.get("utilisateur")), 404
+
+@app.errorhandler(500)
+def internal_server_error(e):
+    return render_template('500.html', utilisateur=session.get("utilisateur")), 500
+
+@app.errorhandler(403)
+def forbidden(e):
+    return render_template('403.html', utilisateur=session.get("utilisateur")), 403
+
