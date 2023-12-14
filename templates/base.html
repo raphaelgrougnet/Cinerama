@@ -52,7 +52,7 @@
             </li>
             {% if utilisateur.is_admin %}
               <li class="nav-item">
-                <a class="nav-link" href="/film/ajout-film">Ajouter un Film</a>
+                <a class="nav-link {% block add_active %}{% endblock %}"  href="/film/ajout-film">Ajouter un Film</a>
               </li>
             {% endif %}
             {% if utilisateur %}
