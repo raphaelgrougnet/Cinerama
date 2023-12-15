@@ -7,6 +7,7 @@
     <div class="d-flex flex-column flex-grow-1">
         <div class="d-flex justify-content-between">
             <h2 class="fw-bold m-0">{{ film.Title }}</h2>
+            {% if utilisateur %}
             <div class="d-flex">
                 {% if is_visionne %}
                     <form action="/film/{{film._id}}" method="POST">
@@ -31,7 +32,7 @@
                 </form>
                 {% endif %}
             </div>
-            
+            {% endif %}
         </div>
         <p><span class="fw-bold">Date de sortie :</span> {{film.Released}}</p>
         <hr width="100%">
@@ -41,6 +42,7 @@
         <p><span class="fw-bold">Durée :</span> {{film.Runtime}}</p>
         <p><span class="fw-bold">Pays :</span> {{film.Country}}</p>
         <p><span class="fw-bold">Langue :</span> {{film.Language}}</p>
+        <p><span class="fw-bold">Synopsis :</span> {{film.Plot}}</p>
         <hr width="100%">
         <div class="mb-2">
             <p>M E T A S C O R E</p>
