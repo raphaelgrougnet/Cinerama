@@ -2,15 +2,15 @@
 
 {% block content %}
 <section class="mt-4">
-        <h1>
-            {% if utilisateur.is_premium %}
-            <div class="tooltip-premium">
-                <i class="bi bi-star-fill premium-color"></i>
-                <span class="tooltiptext-premium">Administrateur</span>
-            </div>
-            {% endif %} 
-            {{utilisateur.first}} {{utilisateur.last}}
-        </h1>
+    <h1>
+        {% if utilisateur.is_premium %}
+        <div class="tooltip-premium">
+            <i class="bi bi-star-fill premium-color"></i>
+            <span class="tooltiptext-premium">Administrateur</span>
+        </div>
+        {% endif %} 
+        {{utilisateur.first}} {{utilisateur.last}}
+    </h1>
 </section>
 <section class="mt-3">
    
