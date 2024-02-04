@@ -53,7 +53,7 @@ def film(id):
         commentaire["utilisateur"]["_id"] = str(commentaire["utilisateur"]["_id"])
         if 'user_liked' in commentaire and commentaire['user_liked']:
             for like in commentaire['user_liked']:
-                if str(like['id_user']) == str(utilisateur['_id']):
+                if utilisateur is not None and str(like['id_user']) == str(utilisateur['_id']):
                     commentaire['is_critique'] = True
                     if like['is_like']:
                         commentaire['is_like'] = True
