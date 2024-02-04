@@ -157,60 +157,60 @@
                                 <span class="comment-card__content__metadata__comment-date">Posté le {{commentaire.date_post}}</span>
                             </p>
                         </div>
-                        {% if commentaire.is_critique %}
-                            {% if commentaire.is_like %}
-                                <div class="like-dislike-buttons">
-                                    <div class="fs-4 d-flex align-items-baseline like-group">
-                                        <form action="/film/{{film._id}}" method="POST">
-                                            <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">
-                                            <button class="btn btn-like me-1" type="submit" name="form4"><i class="fs-4 bi bi-hand-thumbs-up-fill"></i></button>
-                                        </form>
-                                        <p class="fw-semibold">{{commentaire.like_up}}</p>
-                                    </div>
-                                    <div class="fs-4 d-flex align-items-baseline dislike-group">
-                                        <form action="/film/{{film._id}}" method="POST">
-                                            <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">
-                                            <button class="btn btn-dislike me-1" type="submit" name="form5"><i class="fs-4 bi bi-hand-thumbs-down"></i></button>
-                                        </form>
-                                        <p class="fw-semibold">{{commentaire.like_down}}</p>
-                                    </div>
-                                </div>  
-                            {% else %}  
-                                <div class="like-dislike-buttons">
-                                    <div class="fs-4 d-flex align-items-baseline like-group">
-                                        <form action="/film/{{film._id}}" method="POST">
-                                            <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">
-                                            <button class="btn btn-like me-1" type="submit" name="form4"><i class="fs-4 bi bi-hand-thumbs-up"></i></button>
-                                        </form>
-                                        <p class="fw-semibold">{{commentaire.like_up}}</p>
-                                    </div>
-                                    <div class="fs-4 d-flex align-items-baseline like-group">
-                                        <form action="/film/{{film._id}}" method="POST">
-                                            <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">
-                                            <button class="btn btn-dislike me-1" type="submit" name="form5"><i class="fs-4 bi bi-hand-thumbs-down-fill"></i></button>
-                                        </form>
-                                        <p class="fw-semibold">{{commentaire.like_down}}</p>
-                                    </div>
-                                </div>   
-                            {% endif %}    
-                        {% else %}  
-                            <div class="like-dislike-buttons">
-                                <div class="fs-4 d-flex align-items-baseline like-group">
-                                    <form action="/film/{{film._id}}" method="POST">
-                                        <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">
-                                        <button class="btn btn-like me-1" type="submit" name="form4"><i class="fs-4 bi bi-hand-thumbs-up"></i></button>
-                                    </form>
-                                    <p class="fw-semibold">{{commentaire.like_up}}</p>
-                                </div>
-                                <div class="fs-4 d-flex align-items-baseline like-group">
-                                    <form action="/film/{{film._id}}" method="POST">
-                                        <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">
-                                        <button class="btn btn-dislike me-1" type="submit" name="form5"><i class="fs-4 bi bi-hand-thumbs-down"></i></button>
-                                    </form>
-                                    <p class="fw-semibold">{{commentaire.like_down}}</p>
-                                </div> 
-                            </div>  
-                        {% endif %}
+{#                        {% if commentaire.is_critique %}#}
+{#                            {% if commentaire.is_like %}#}
+{#                                <div class="like-dislike-buttons">#}
+{#                                    <div class="fs-4 d-flex align-items-baseline like-group">#}
+{#                                        <form action="/film/{{film._id}}" method="POST">#}
+{#                                            <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">#}
+{#                                            <button class="btn btn-like me-1" type="submit" name="form4"><i class="fs-4 bi bi-hand-thumbs-up-fill"></i></button>#}
+{#                                        </form>#}
+{#                                        <p class="fw-semibold">{{commentaire.like_up}}</p>#}
+{#                                    </div>#}
+{#                                    <div class="fs-4 d-flex align-items-baseline dislike-group">#}
+{#                                        <form action="/film/{{film._id}}" method="POST">#}
+{#                                            <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">#}
+{#                                            <button class="btn btn-dislike me-1" type="submit" name="form5"><i class="fs-4 bi bi-hand-thumbs-down"></i></button>#}
+{#                                        </form>#}
+{#                                        <p class="fw-semibold">{{commentaire.like_down}}</p>#}
+{#                                    </div>#}
+{#                                </div>  #}
+{#                            {% else %}  #}
+{#                                <div class="like-dislike-buttons">#}
+{#                                    <div class="fs-4 d-flex align-items-baseline like-group">#}
+{#                                        <form action="/film/{{film._id}}" method="POST">#}
+{#                                            <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">#}
+{#                                            <button class="btn btn-like me-1" type="submit" name="form4"><i class="fs-4 bi bi-hand-thumbs-up"></i></button>#}
+{#                                        </form>#}
+{#                                        <p class="fw-semibold">{{commentaire.like_up}}</p>#}
+{#                                    </div>#}
+{#                                    <div class="fs-4 d-flex align-items-baseline like-group">#}
+{#                                        <form action="/film/{{film._id}}" method="POST">#}
+{#                                            <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">#}
+{#                                            <button class="btn btn-dislike me-1" type="submit" name="form5"><i class="fs-4 bi bi-hand-thumbs-down-fill"></i></button>#}
+{#                                        </form>#}
+{#                                        <p class="fw-semibold">{{commentaire.like_down}}</p>#}
+{#                                    </div>#}
+{#                                </div>   #}
+{#                            {% endif %}    #}
+{#                        {% else %}  #}
+{#                            <div class="like-dislike-buttons">#}
+{#                                <div class="fs-4 d-flex align-items-baseline like-group">#}
+{#                                    <form action="/film/{{film._id}}" method="POST">#}
+{#                                        <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">#}
+{#                                        <button class="btn btn-like me-1" type="submit" name="form4"><i class="fs-4 bi bi-hand-thumbs-up"></i></button>#}
+{#                                    </form>#}
+{#                                    <p class="fw-semibold">{{commentaire.like_up}}</p>#}
+{#                                </div>#}
+{#                                <div class="fs-4 d-flex align-items-baseline like-group">#}
+{#                                    <form action="/film/{{film._id}}" method="POST">#}
+{#                                        <input type="hidden" name="id_commentaire" value="{{commentaire._id}}">#}
+{#                                        <button class="btn btn-dislike me-1" type="submit" name="form5"><i class="fs-4 bi bi-hand-thumbs-down"></i></button>#}
+{#                                    </form>#}
+{#                                    <p class="fw-semibold">{{commentaire.like_down}}</p>#}
+{#                                </div> #}
+{#                            </div>  #}
+{#                        {% endif %}#}
                     </div>
                 </div> 
             {% else %}
