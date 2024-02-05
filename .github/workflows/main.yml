@@ -1,0 +1,13 @@
+on:
+  schedule:
+    - cron:  '*/10 * * * *'
+
+jobs:
+  schedule:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Ping homepage
+        run: wget https://cinerama-ypsj.onrender.com
