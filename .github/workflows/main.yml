@@ -1,13 +1,13 @@
+name: main
 on:
   schedule:
-    - cron:  '*/10 * * * *'
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
 
 jobs:
   schedule:
+    name: ping
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      contents: read
     steps:
       - name: Ping homepage
         run: wget https://cinerama-ypsj.onrender.com
